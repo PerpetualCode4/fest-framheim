@@ -5,331 +5,276 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Fest i Framheim · 23. oktober 2026</title>
-<meta name="description" content="Fest i Framheim, Fossøyane 120 i Jostedalen. Fredag 23. oktober 2026, 21:00–03:00. Gratis inngang, 18 år. Påmelding på førehand.">
-<meta name="theme-color" content="#10141f">
+<meta name="description" content="Fest i Framheim, Fossøyane 120 i Jostedalen. Fredag 23. oktober 2026, 21:00–03:00. Gratis inngang, 18 år. Påmelding på LetsReg.">
+<meta name="theme-color" content="#0c0f17">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fest i Framheim">
 <meta property="og:description" content="Fredag 23. oktober, Framheim i Jostedalen. Meld deg på.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
 <style>
 :root{
-  --night:#10141f;
-  --panel:#1a1f2e;
-  --red:#c8402b;
-  --gold:#d9a441;
+  --night:#0c0f17;
+  --panel:#151a26;
+  --panel-2:#1c2231;
   --text:#f1ebe0;
-  --muted:#9a97a3;
-  --line:rgba(241,235,224,.12);
-  --radius:4px;
+  --muted:#a29fab;
+  --gold:#d9a441;
+  --red:#c8402b;
+  --line:rgba(241,235,224,.1);
+  --line-2:rgba(241,235,224,.2);
   --ease:cubic-bezier(.22,1,.36,1);
-  --wrap:1180px;
+  --wrap:1200px;
   --gutter:clamp(1.25rem,5vw,3rem);
-  --section:clamp(4.5rem,11vw,8.5rem);
-  --header:60px;
+  --section:clamp(4.5rem,10vw,8rem);
+  --r-card:20px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{background:var(--night);color:var(--text);font:400 1.0625rem/1.7 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--night);color:var(--text);font:400 1.0625rem/1.65 "Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
-.display{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;line-height:.86;letter-spacing:-.015em;text-transform:uppercase}
-.label{font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.eyebrow{font-size:.8125rem;font-weight:500;color:var(--muted)}
 
-/* Analog korn over heile sida, som ein trykt plakat */
-body::after{content:"";position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.07;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+/* Pillar */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:48px;padding:.8rem 1.4rem;
+  border-radius:999px;border:1px solid transparent;font:600 .9375rem/1 "Instrument Sans",sans-serif;text-decoration:none;white-space:nowrap;
+  transition:transform .45s var(--ease),background-color .3s var(--ease),border-color .3s var(--ease)}
+.pill:hover{transform:translateY(-2px)}
+.pill:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.pill--solid{background:var(--text);color:var(--night)}
+.pill--solid:hover{background:#fff}
+.pill--ghost{background:rgba(241,235,224,.06);border-color:var(--line-2);color:var(--text)}
+.pill--ghost:hover{border-color:rgba(241,235,224,.45)}
+.pill--sm{min-height:40px;padding:.6rem 1.1rem;font-size:.875rem}
+.pill .ico{width:1em;height:1em;transition:transform .45s var(--ease)}
+.pill:hover .ico{transform:translate(2px,-2px)}
 
-/* Knappar */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.75em;min-height:52px;padding:1rem 1.75rem;
-  background:var(--red);color:var(--text);border:1px solid var(--red);border-radius:var(--radius);
-  font:600 .875rem/1 "Instrument Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
-  transition:transform .45s var(--ease),background-color .3s var(--ease)}
-.btn:hover{transform:translateY(-2px);background:#d54a34}
-.btn:focus-visible,.map-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.btn .arrow{display:inline-block;transition:transform .45s var(--ease)}
-.btn:hover .arrow{transform:translateX(4px)}
-.btn--sm{min-height:38px;padding:.6rem 1rem;font-size:.6875rem}
-.btn--lg{min-height:64px;padding:1.25rem 2.5rem;font-size:1rem}
-.btn.is-off{background:transparent;border-color:rgba(200,64,43,.65);cursor:default}
-.btn.is-off:hover{transform:none}
-.btn.is-off .arrow{display:none}
-
-/* Header */
-.site-header{position:sticky;top:0;z-index:50;height:var(--header);background:rgba(16,20,31,.82);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
-.brand{font-size:1.375rem;text-decoration:none;white-space:nowrap;letter-spacing:.02em;line-height:1}
-.brand span{color:var(--gold)}
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background-color .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+.nav.is-scrolled{background:rgba(12,15,23,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.nav .wrap{height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;font-size:1rem;letter-spacing:-.01em;white-space:nowrap}
+.logo__mark{width:30px;height:30px;border-radius:50%;background:var(--text);color:var(--night);display:grid;place-items:center;font-size:.75rem;font-weight:700;letter-spacing:0}
+.nav__links{display:none;gap:2rem;font-size:.9375rem;color:var(--muted)}
+.nav__links a{text-decoration:none;transition:color .3s var(--ease)}
+.nav__links a:hover{color:var(--text)}
 
 /* Hero */
-.hero{position:relative;isolation:isolate;display:flex;align-items:flex-end;overflow:hidden;
-  min-height:clamp(360px,calc(60svh - var(--header)),760px);
-  background:radial-gradient(70% 55% at 72% 78%,rgba(217,164,65,.22),transparent 70%),
-             radial-gradient(90% 70% at 20% 0%,#1d2335,transparent 70%),var(--night)}
-.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(rgba(16,20,31,.55),rgba(16,20,31,.55)),linear-gradient(180deg,transparent 45%,rgba(16,20,31,.85))}
-.hero__inner{width:100%;padding-top:2.5rem;padding-bottom:clamp(2rem,5vw,3.5rem)}
-.hero__top{display:flex;justify-content:space-between;gap:1rem;margin-bottom:1rem}
-.hero__top .label{color:var(--text);opacity:.8}
-.hero h1{margin-bottom:clamp(1.25rem,3vw,2rem)}
-.hero h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
-.hero h1 .line>span{display:block}
-.hero h1 .l1{font-size:clamp(2.75rem,12vw,7.5rem);font-weight:700;color:var(--gold)}
-.hero h1 .l2{font-size:clamp(4.25rem,21.5vw,15.5rem)}
-.hero__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem}
-.hero__sub{font-size:clamp(1.0625rem,2vw,1.25rem);max-width:30ch;opacity:.92}
+.hero{position:relative;isolation:isolate;min-height:0;display:flex;align-items:flex-end;overflow:hidden}
+.hero__bg{position:absolute;inset:-4%;z-index:-2;background:url("Bilder/framheim-gata.jpg") center 40%/cover no-repeat;filter:blur(2px) saturate(.6);transform:scale(1.02)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(12,15,23,.72) 0%,rgba(12,15,23,.62) 40%,rgba(12,15,23,.92) 85%,var(--night) 100%),
+  radial-gradient(60% 50% at 80% 30%,rgba(217,164,65,.14),transparent 70%)}
+.hero__inner{width:100%;padding-top:6.25rem;padding-bottom:2.25rem}
+.status{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem .9rem .4rem .7rem;border-radius:999px;border:1px solid var(--line-2);
+  background:rgba(12,15,23,.4);font-size:.8125rem;font-weight:500;margin-bottom:clamp(1.25rem,3vw,1.75rem)}
+.status__dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.status__dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:ping 2s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(3);opacity:0}}
 
-.js .hero h1 .line>span{transform:translateY(105%);animation:up 1.1s var(--ease) forwards}
-.js .hero h1 .l2>span{animation-delay:.12s}
-.js .fade-in{opacity:0;transform:translateY(14px);animation:rise .9s var(--ease) forwards}
-.js .hero__top.fade-in{animation-delay:.05s}
-.js .hero__row.fade-in{animation-delay:.45s}
-@keyframes up{to{transform:none}}
+.hero__head{display:grid;gap:1.25rem}
+.hero h1{font-weight:600;font-size:clamp(3rem,10.5vw,7.25rem);line-height:1;letter-spacing:-.045em}
+.hero h1 .row{display:block}
+.chip-img{display:inline-block;vertical-align:middle;width:1.55em;height:.82em;margin:0 .08em .12em;border-radius:999px;overflow:hidden;
+  background:url("Bilder/framheim-gata.jpg") 55% 45%/cover;box-shadow:0 0 0 2px rgba(241,235,224,.25);
+  transition:width .7s var(--ease)}
+.hero h1:hover .chip-img{width:2.1em}
+.hero__side{font-size:clamp(.9375rem,1.4vw,1.0625rem);color:var(--text);opacity:.8;max-width:26ch;line-height:1.5}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(1.75rem,4vw,2.5rem)}
+
+.js .reveal-up{opacity:0;transform:translateY(22px);animation:rise 1s var(--ease) forwards}
+.js .d1{animation-delay:.05s}.js .d2{animation-delay:.15s}.js .d3{animation-delay:.25s}.js .d4{animation-delay:.38s}.js .d5{animation-delay:.5s}
 @keyframes rise{to{opacity:1;transform:none}}
 
-/* Rullande stripe */
-.ticker{background:var(--red);color:var(--night);overflow:hidden;border-block:1px solid rgba(0,0,0,.25)}
-.ticker__track{display:flex;width:max-content;animation:ticker 32s linear infinite}
-.ticker__track ul{display:flex;list-style:none}
-.ticker li{display:flex;align-items:center;gap:1.25rem;padding:.7rem 1.25rem .65rem 0;
-  font:700 1.125rem/1 "Big Shoulders Display",sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.ticker li::after{content:"";width:7px;height:7px;background:var(--night);transform:rotate(45deg)}
-@keyframes ticker{to{transform:translateX(-50%)}}
-
 /* Nedteljing */
-.countdown{background:var(--panel);border-bottom:1px solid var(--line)}
-.countdown__inner{padding-top:clamp(1.5rem,4vw,3rem);padding-bottom:clamp(1.75rem,4vw,3rem)}
-.countdown__head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1rem}
-.clock{display:grid;grid-template-columns:repeat(4,1fr)}
-.clock__cell{padding:.25rem 0;text-align:center;position:relative}
-.clock__cell+.clock__cell::before{content:"";position:absolute;left:0;top:15%;bottom:30%;width:1px;background:var(--line)}
-.roll{display:inline-flex;font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;
-  font-size:clamp(3rem,13vw,7rem);line-height:1;height:1em;overflow:hidden;color:var(--gold);font-variant-numeric:tabular-nums}
+.count{border-block:1px solid var(--line)}
+.count .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 2rem;padding-top:1.25rem;padding-bottom:1.5rem}
+@media (max-width:767px){.clock{width:100%;justify-content:space-between}}
+.clock{display:flex;gap:clamp(1rem,4vw,3rem)}
+.clock__cell{display:flex;align-items:baseline;gap:.35rem}
+.roll{display:inline-flex;font-weight:600;font-size:clamp(2.25rem,8vw,3.75rem);line-height:1;height:1em;overflow:hidden;color:var(--gold);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .roll__col{display:block;height:1em;overflow:hidden}
 .roll__strip{display:flex;flex-direction:column;transition:transform .7s var(--ease)}
 .roll__strip span{display:block;height:1em}
-.clock__unit{display:block;margin-top:.5rem}
-.countdown__msg{font-size:clamp(2.75rem,10vw,5.5rem);color:var(--gold);text-align:center;padding:.75rem 0}
+.clock__unit{font-size:.8125rem;color:var(--muted)}
+.count__msg{font-weight:600;font-size:clamp(1.75rem,6vw,2.75rem);letter-spacing:-.03em;color:var(--gold)}
 
-/* Billett */
+/* Seksjonar */
 .section{padding:var(--section) 0}
-.section__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:clamp(2rem,5vw,3.5rem)}
-.section__head h2{font-size:clamp(3rem,10vw,6rem);margin-top:.85rem}
-.section__head p{max-width:32ch;color:var(--muted)}
+.section__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 2rem;margin-bottom:clamp(2rem,5vw,3rem)}
+.section__head h2{font-weight:600;font-size:clamp(2.25rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:.6rem;max-width:14ch}
 
-.ticket-wrap{perspective:1400px}
-.ticket{position:relative;display:grid;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:0 30px 60px -30px rgba(0,0,0,.8);transform-style:preserve-3d;transition:transform .7s var(--ease)}
-.ticket__main{position:relative;padding:clamp(1.75rem,5vw,3rem)}
-.ticket__title{font-size:clamp(2.25rem,7vw,3.5rem);margin:.75rem 0 clamp(1.5rem,4vw,2.25rem)}
-.ticket__title span{color:var(--gold)}
-.facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
-.facts div{padding:1rem 0 1.1rem;border-bottom:1px solid var(--line)}
-.facts div:nth-child(odd){padding-right:1rem}
-.facts div:nth-child(even){padding-left:1rem;border-left:1px solid var(--line)}
-.facts dd{font-size:1.125rem;font-weight:500;line-height:1.35;margin-top:.3rem}
-
-.ticket__stub{position:relative;padding:clamp(1.75rem,5vw,3rem);border-top:2px dashed rgba(241,235,224,.18);
-  display:flex;flex-direction:column;justify-content:space-between;gap:1.75rem}
-.ticket__stub::before,.ticket__stub::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;
-  background:var(--night);top:-14px;border:1px solid var(--line)}
-.ticket__stub::before{left:-14px}
-.ticket__stub::after{right:-14px}
-.stub__no{display:flex;justify-content:space-between;align-items:baseline}
-.stub__big{font-size:clamp(4.5rem,18vw,7rem);color:var(--text)}
-.stub__big small{font-size:.4em;color:var(--gold);margin-left:.05em}
-.map-link{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:52px;padding:.9rem 1.1rem;
-  border:1px solid var(--line);border-radius:var(--radius);text-decoration:none;font-weight:600;font-size:.8125rem;
-  letter-spacing:.12em;text-transform:uppercase;transition:border-color .3s var(--ease),transform .45s var(--ease)}
-.map-link:hover{border-color:var(--gold);transform:translateY(-2px)}
-.map-link span{color:var(--gold)}
-
-.stamp{position:absolute;top:clamp(1.25rem,4vw,2.5rem);right:clamp(1.25rem,4vw,2.5rem);
-  padding:.35rem .75rem .25rem;border:3px solid var(--red);border-radius:var(--radius);color:var(--red);
-  font:900 clamp(1.5rem,5vw,2.25rem)/1 "Big Shoulders Display",sans-serif;letter-spacing:.08em;text-transform:uppercase;
-  transform:rotate(-11deg);opacity:.92;box-shadow:inset 0 0 0 2px rgba(200,64,43,.25)}
-.js .stamp{opacity:0;transform:rotate(-11deg) scale(2.2)}
-.js .ticket.in .stamp{opacity:.92;transform:rotate(-11deg) scale(1);transition:transform .45s cubic-bezier(.5,1.6,.4,1) .55s,opacity .2s ease-out .55s}
-
-/* Finn fram */
-.place{display:grid;gap:1.5rem;margin-top:clamp(2.5rem,6vw,4rem)}
-.place img{width:100%;height:auto;filter:saturate(.8) brightness(.88);border:1px solid var(--line);border-radius:var(--radius)}
-.place__addr{font-size:clamp(2.25rem,7vw,3.5rem);margin:.75rem 0 .5rem}
-.place__credit{margin-top:1.25rem;font-size:.8125rem;color:var(--muted)}
+/* Arrangementskort */
+.event{display:grid;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
+.event__media{position:relative;aspect-ratio:16/10;overflow:hidden}
+.event__media img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.85);transition:transform 1.2s var(--ease)}
+.event:hover .event__media img{transform:scale(1.04)}
+.date-badge{position:absolute;top:1rem;left:1rem;width:64px;padding:.5rem 0 .55rem;border-radius:14px;background:var(--text);color:var(--night);text-align:center;line-height:1}
+.date-badge b{display:block;font-size:1.625rem;font-weight:700;letter-spacing:-.03em}
+.date-badge small{display:block;margin-top:.3rem;font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.credit{position:absolute;right:.75rem;bottom:.6rem;font-size:.6875rem;color:rgba(241,235,224,.7)}
+.event__body{padding:clamp(1.5rem,4vw,2.5rem);display:flex;flex-direction:column}
+.event__title{font-weight:600;font-size:clamp(1.625rem,3.5vw,2.25rem);letter-spacing:-.03em;line-height:1.1}
+.event__place{color:var(--muted);margin-top:.35rem}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.tag{padding:.4rem .85rem;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);font-size:.8125rem;font-weight:500}
+.details{margin-top:1.75rem;border-top:1px solid var(--line)}
+.details div{display:flex;justify-content:space-between;gap:1rem;padding:.95rem 0;border-bottom:1px solid var(--line)}
+.details dt{color:var(--muted)}
+.details dd{font-weight:500;text-align:right}
+.event__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:auto;padding-top:1.75rem}
 
 /* Påmelding */
-.signup{position:relative;overflow:hidden;text-align:center;border-top:1px solid var(--line);
-  background:radial-gradient(55% 60% at 50% 115%,rgba(200,64,43,.22),transparent 70%),var(--night)}
-.signup h2{font-size:clamp(3.75rem,15vw,10rem);margin:1rem 0 1.5rem}
-.signup h2 span{display:block;color:var(--gold)}
-.signup p{max-width:40ch;margin:0 auto 2.5rem;opacity:.88}
-
-.signup .signup__alt{max-width:36ch;margin:1.5rem auto 0;font-size:.875rem;line-height:1.6;color:var(--muted);opacity:1}
+.signup{position:relative;overflow:hidden;border-radius:var(--r-card);isolation:isolate;
+  padding:clamp(3rem,8vw,6rem) clamp(1.5rem,6vw,5rem);border:1px solid var(--line)}
+.signup::before{content:"";position:absolute;inset:0;z-index:-2;background:url("Bilder/framheim-gata.jpg") center/cover;filter:blur(18px) saturate(.5);transform:scale(1.2)}
+.signup::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(12,15,23,.94),rgba(12,15,23,.78))}
+.signup h2{font-weight:600;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.045em;max-width:12ch}
+.signup p{max-width:42ch;margin-top:1.25rem;opacity:.85}
+.signup .pill{margin-top:2rem}
+.signup__alt{font-size:.875rem;color:var(--muted);opacity:1!important}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
 /* Footer */
-.site-footer{border-top:1px solid var(--line)}
-.site-footer .wrap{padding-top:1.75rem;padding-bottom:1.75rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem}
-.site-footer p{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding-top:2rem;padding-bottom:2rem;font-size:.8125rem;color:var(--muted)}
 
 /* Fast mobilknapp */
 .mobile-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:.75rem var(--gutter) calc(.75rem + env(safe-area-inset-bottom));
-  background:rgba(16,20,31,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
-.mobile-cta .btn{width:100%}
-@media (max-width:767px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
+  background:linear-gradient(180deg,rgba(12,15,23,0),rgba(12,15,23,.95) 35%)}
+.mobile-cta .pill{width:100%;min-height:52px}
+@media (max-width:767px){body{padding-bottom:calc(80px + env(safe-area-inset-bottom))}}
 
 /* Scroll-reveal */
 .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js .reveal.in{opacity:1;transform:none}
 
 @media (min-width:768px){
-  :root{--header:68px}
   .mobile-cta{display:none}
-  .brand{font-size:1.625rem}
-  .btn--sm{min-height:42px;padding:.7rem 1.25rem;font-size:.75rem}
-  .hero{min-height:min(75vh,820px)}
-  .ticket{grid-template-columns:1fr 300px}
-.ticket__stub{border-top:0;border-left:2px dashed rgba(241,235,224,.18)}
-  .ticket__stub::before,.ticket__stub::after{left:-14px;right:auto}
-  .ticket__stub::before{top:-14px}
-  .ticket__stub::after{top:auto;bottom:-14px}
-  .facts{grid-template-columns:repeat(3,1fr)}
-  .place{grid-template-columns:minmax(0,590px) 1fr;align-items:end;gap:clamp(2rem,4vw,3.5rem)}
-  .facts div{padding:1.1rem 1rem 1.25rem!important;border-left:1px solid var(--line)}
-  .facts div:nth-child(3n+1){padding-left:0!important;border-left:0}
+  .hero{min-height:min(78svh,820px)}
+  .hero__inner{padding-top:7rem;padding-bottom:4.5rem}
+  .nav__links{display:flex}
+  .hero__head{grid-template-columns:1fr auto;align-items:end;gap:3rem}
+  .hero__side{padding-bottom:1rem}
+  .event{grid-template-columns:1.05fr 1fr}
+  .event__media{aspect-ratio:auto;min-height:100%}
 }
-@media (max-width:767px){
-  .stamp{top:.6rem;right:.75rem;font-size:1.25rem;border-width:2px}
-}
-@media (max-width:400px){
-  .brand{font-size:1.2rem}
-  .btn--sm{padding:.55rem .7rem;letter-spacing:.06em}
+@media (max-width:340px){
+  .logo span:last-child{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
-  .ticker__track{animation:none}
 }
 </style>
 </head>
 <body>
 
-<header class="site-header">
+<header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand display" href="#top">Fest i <span>Framheim</span></a>
-    <a class="btn btn--sm js-signup" href="#pamelding">Meld deg på</a>
+    <a class="logo" href="#top"><span class="logo__mark">FiF</span><span>Fest i Framheim</span></a>
+    <nav class="nav__links" aria-label="Hovudmeny">
+      <a href="#info">Info</a>
+      <a href="#pamelding">Påmelding</a>
+    </nav>
+    <a class="pill pill--solid pill--sm js-signup" href="#pamelding">Meld deg på</a>
   </div>
 </header>
 
 <main id="top">
   <section class="hero" aria-labelledby="hero-title">
-    <img class="hero__img" src="Bilder/framheim.jpg" alt="" fetchpriority="high" onerror="this.remove()">
+    <div class="hero__bg" aria-hidden="true"></div>
     <div class="wrap hero__inner">
-      <div class="hero__top fade-in">
-        <p class="label">Jostedalen</p>
-        <p class="label">23.10.2026</p>
+      <p class="status reveal-up d1"><span class="status__dot" aria-hidden="true"></span>Påmeldinga er open</p>
+      <div class="hero__head">
+        <h1 id="hero-title" class="reveal-up d2">
+          <span class="row">Fest i</span>
+          <span class="row"><span class="chip-img" aria-hidden="true"></span> Framheim.</span>
+        </h1>
+        <p class="hero__side reveal-up d3">Fredag 23. oktober, 21:00 til 03:00. Fossøyane 120 i Jostedalen.</p>
       </div>
-      <h1 id="hero-title" class="display">
-        <span class="line l1"><span>Fest i</span></span>
-        <span class="line l2"><span>Framheim</span></span>
-      </h1>
-      <div class="hero__row fade-in">
-        <p class="hero__sub">Fredag 23. oktober. Dørene opnar 21:00.</p>
-        <a class="btn js-signup" href="#pamelding">Meld deg på <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <div class="hero__ctas reveal-up d4">
+        <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
+          <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="pill pill--ghost" href="#info">Sjå info</a>
       </div>
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-      <ul><li>Fredag 23.10</li><li>Framheim</li><li>Jostedalen</li><li>21:00–03:00</li><li>Gratis inngang</li><li>18 år</li><li>Ta med eigen drikke</li></ul>
-      <ul><li>Fredag 23.10</li><li>Framheim</li><li>Jostedalen</li><li>21:00–03:00</li><li>Gratis inngang</li><li>18 år</li><li>Ta med eigen drikke</li></ul>
-    </div>
-  </div>
-
-  <section class="countdown" aria-label="Nedteljing til festen">
-    <div class="wrap countdown__inner">
-      <div class="countdown__head">
-        <p class="label">Dørene opnar om</p>
-        <p class="label">Fre 21:00</p>
-      </div>
+  <section class="count reveal-up d5" aria-label="Nedteljing til festen">
+    <div class="wrap">
+      <p class="eyebrow" id="count-label">Dørene opnar om</p>
       <div class="clock" id="clock" role="timer" aria-live="off">
-        <div class="clock__cell"><span class="roll" data-u="d">00</span><span class="label clock__unit">Dagar</span></div>
-        <div class="clock__cell"><span class="roll" data-u="h">00</span><span class="label clock__unit">Timar</span></div>
-        <div class="clock__cell"><span class="roll" data-u="m">00</span><span class="label clock__unit">Min</span></div>
-        <div class="clock__cell"><span class="roll" data-u="s">00</span><span class="label clock__unit">Sek</span></div>
+        <div class="clock__cell"><span class="roll" data-u="d">00</span><span class="clock__unit">dagar</span></div>
+        <div class="clock__cell"><span class="roll" data-u="h">00</span><span class="clock__unit">t</span></div>
+        <div class="clock__cell"><span class="roll" data-u="m">00</span><span class="clock__unit">min</span></div>
+        <div class="clock__cell"><span class="roll" data-u="s">00</span><span class="clock__unit">sek</span></div>
       </div>
-      <p class="display countdown__msg" id="clock-msg" hidden></p>
+      <p class="count__msg" id="clock-msg" hidden></p>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="info-title">
+  <section class="section" id="info" aria-labelledby="info-title">
     <div class="wrap">
       <div class="section__head reveal">
         <div>
-          <p class="label">Billetten din</p>
-          <h2 id="info-title" class="display">Alt du treng</h2>
+          <p class="eyebrow">Info</p>
+          <h2 id="info-title">Alt du treng å vite.</h2>
         </div>
-        <p>Ta vare på denne. Resten finn du ut på staden.</p>
       </div>
-      <div class="ticket-wrap">
-        <article class="ticket reveal" id="ticket">
-          <div class="ticket__main">
-            <p class="label">Adgang · 1 person</p>
-            <h3 class="ticket__title display">Fest i <span>Framheim</span></h3>
-            <dl class="facts">
-              <div><dt class="label">Dato</dt><dd>Fredag 23. oktober</dd></div>
-              <div><dt class="label">Tid</dt><dd>21:00–03:00</dd></div>
-              <div><dt class="label">Stad</dt><dd>Fossøyane 120, Jostedalen</dd></div>
-              <div><dt class="label">Inngang</dt><dd>Gratis</dd></div>
-              <div><dt class="label">Drikke</dt><dd>Ta med eigen</dd></div>
-              <div><dt class="label">Alder</dt><dd>18 år</dd></div>
-            </dl>
-            <span class="stamp" aria-hidden="true">Gratis</span>
+      <article class="event reveal">
+        <div class="event__media">
+          <img src="Bilder/framheim-gata.jpg" alt="Framheim: kvitt trehus med blå vindaugskarmar ved vegen i Fossøyane" width="590" height="377" loading="lazy">
+          <div class="date-badge" aria-hidden="true"><b>23</b><small>Okt</small></div>
+          <span class="credit">Bilde: Google Street View</span>
+        </div>
+        <div class="event__body">
+          <h3 class="event__title">Fest i Framheim</h3>
+          <p class="event__place">Fossøyane 120, Jostedalen</p>
+          <div class="tags">
+            <span class="tag">Gratis inngang</span>
+            <span class="tag">18 år</span>
+            <span class="tag">Ta med eigen drikke</span>
           </div>
-          <div class="ticket__stub">
-            <div>
-              <div class="stub__no"><p class="label">Aldersgrense</p><p class="label">23.10</p></div>
-              <p class="stub__big display">18<small>+</small></p>
-            </div>
-            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Foss%C3%B8yane+120%2C+Jostedalen" target="_blank" rel="noopener">Opne i Google Maps <span aria-hidden="true">&nearr;</span></a>
+          <dl class="details">
+            <div><dt>Dato</dt><dd>Fredag 23. oktober 2026</dd></div>
+            <div><dt>Tid</dt><dd>21:00–03:00</dd></div>
+            <div><dt>Stad</dt><dd>Det kvite huset ved vegen</dd></div>
+          </dl>
+          <div class="event__ctas">
+            <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
+              <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="pill pill--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Foss%C3%B8yane+120%2C+Jostedalen" target="_blank" rel="noopener">Opne i Google Maps</a>
           </div>
-        </article>
-      </div>
-      <figure class="place reveal">
-        <img src="Bilder/framheim-gata.jpg" alt="Framheim: kvitt trehus med blå vindaugskarmar, ved vegen i Fossøyane" width="590" height="377" loading="lazy">
-        <figcaption>
-          <p class="label">Finn fram</p>
-          <p class="place__addr display">Fossøyane 120</p>
-          <p>Jostedalen. Det kvite huset ved vegen.</p>
-          <p class="place__credit">Bilde: Google Street View</p>
-        </figcaption>
-      </figure>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section class="section signup" id="pamelding" aria-labelledby="signup-title">
-    <div class="wrap reveal">
-      <p class="label">Påmelding</p>
-      <h2 id="signup-title" class="display">Ses i <span>Framheim</span></h2>
-      <p>Meld deg på før du kjem, så veit vi kor mange vi blir.</p>
-      <a class="btn btn--lg js-signup" href="#pamelding">Meld deg på <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      <p class="signup__alt">Påmeldinga skjer på LetsReg. Får du det ikkje til, send melding til <a href="sms:+4748498627">484 98 627</a>.</p>
+  <section class="section" id="pamelding" style="padding-top:0" aria-labelledby="signup-title">
+    <div class="wrap">
+      <div class="signup reveal">
+        <p class="eyebrow">Påmelding</p>
+        <h2 id="signup-title">Ses i Framheim?</h2>
+        <p>Meld deg på før du kjem, så veit vi kor mange vi blir.</p>
+        <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
+          <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <p class="signup__alt">Påmeldinga skjer på LetsReg. Får du det ikkje til, send melding til <a href="sms:+4748498627">484 98 627</a>.</p>
+      </div>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap"><p>Fest i Framheim · 23.10.2026</p><p>Jostedalen</p></div>
+<footer class="footer">
+  <div class="wrap"><p>Fest i Framheim · 23.10.2026</p><p>Fossøyane 120, Jostedalen</p></div>
 </footer>
 
 <div class="mobile-cta">
-  <a class="btn js-signup" href="#pamelding">Meld deg på <span class="arrow" aria-hidden="true">&rarr;</span></a>
+  <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
+    <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 
 <script>
@@ -344,10 +289,17 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
   } else {
     btn.removeAttribute('href');
     btn.setAttribute('aria-disabled', 'true');
-    btn.classList.add('is-off');
     btn.firstChild.nodeValue = 'Påmelding opnar snart';
   }
 });
+
+/* Nav får bakgrunn når du scrollar */
+(function () {
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('is-scrolled', scrollY > 24); }
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+})();
 
 /* Nedteljing med rullande siffer */
 (function () {
@@ -355,7 +307,7 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
   var END = Date.parse('2026-10-24T03:00:00+02:00');
   var clock = document.getElementById('clock');
   var msg = document.getElementById('clock-msg');
-  var head = document.querySelector('.countdown__head');
+  var label = document.getElementById('count-label');
   var rolls = {};
   clock.querySelectorAll('[data-u]').forEach(function (r) { rolls[r.dataset.u] = r; });
   var timer;
@@ -382,7 +334,7 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
     var now = Date.now();
     if (now >= START) {
       clock.hidden = true;
-      head.hidden = true;
+      label.hidden = true;
       msg.hidden = false;
       msg.textContent = now < END ? 'Festen er i gang.' : 'Takk for festen.';
       if (now >= END) clearInterval(timer);
@@ -411,24 +363,6 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
     });
   }, { rootMargin: '0px 0px -12% 0px' });
   items.forEach(function (i) { io.observe(i); });
-})();
-
-/* Billetten vippar etter musepeikaren */
-(function () {
-  var ticket = document.getElementById('ticket');
-  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  ticket.addEventListener('pointermove', function (e) {
-    var r = ticket.getBoundingClientRect();
-    var x = (e.clientX - r.left) / r.width - .5;
-    var y = (e.clientY - r.top) / r.height - .5;
-    ticket.style.transition = 'transform .15s ease-out';
-    ticket.style.transform = 'rotateY(' + (x * 7) + 'deg) rotateX(' + (-y * 7) + 'deg)';
-  });
-  ticket.addEventListener('pointerleave', function () {
-    ticket.style.transition = '';
-    ticket.style.transform = '';
-  });
 })();
 </script>
 </body>
