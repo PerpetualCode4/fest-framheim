@@ -73,7 +73,7 @@ a{color:inherit}
 
 /* Hero */
 .hero{position:relative;isolation:isolate;min-height:0;display:flex;align-items:flex-end;overflow:hidden}
-.hero__bg{position:absolute;inset:-4%;z-index:-2;background:url("Bilder/framheim-hero.jpg") center 40%/cover no-repeat;filter:saturate(.65) contrast(1.05);transform:scale(1.02)}
+.hero__bg{position:absolute;inset:-4%;z-index:-2;background:url("Bilder/framheim.jpg") center 45%/cover no-repeat;filter:saturate(.65) contrast(1.05);transform:scale(1.02)}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(12,15,23,.72) 0%,rgba(12,15,23,.62) 40%,rgba(12,15,23,.92) 85%,var(--night) 100%),
   radial-gradient(60% 50% at 80% 30%,rgba(217,164,65,.14),transparent 70%)}
@@ -110,12 +110,11 @@ a{color:inherit}
 /* Arrangementskort */
 .event{display:grid;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
 .event__media{position:relative;aspect-ratio:16/10;overflow:hidden}
-.event__media img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.85);transition:transform 1.2s var(--ease)}
+.event__media img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;filter:saturate(.7) brightness(.85);transition:transform 1.2s var(--ease)}
 .event:hover .event__media img{transform:scale(1.04)}
 .date-badge{position:absolute;top:1rem;left:1rem;width:64px;padding:.5rem 0 .55rem;border-radius:14px;background:var(--text);color:var(--night);text-align:center;line-height:1}
 .date-badge b{display:block;font-size:1.625rem;font-weight:700;letter-spacing:-.03em}
 .date-badge small{display:block;margin-top:.3rem;font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.credit{position:absolute;right:.75rem;bottom:.6rem;font-size:.6875rem;color:rgba(241,235,224,.7)}
 .event__body{padding:clamp(1.5rem,4vw,2.5rem);display:flex;flex-direction:column}
 .event__title{font-weight:600;font-size:clamp(1.625rem,3.5vw,2.25rem);letter-spacing:-.03em;line-height:1.1}
 .event__place{color:var(--muted);margin-top:.35rem}
@@ -130,7 +129,7 @@ a{color:inherit}
 /* Påmelding */
 .signup{position:relative;overflow:hidden;border-radius:var(--r-card);isolation:isolate;
   padding:clamp(3rem,8vw,6rem) clamp(1.5rem,6vw,5rem);border:1px solid var(--line)}
-.signup::before{content:"";position:absolute;inset:0;z-index:-2;background:url("Bilder/framheim-gata.jpg") center/cover;filter:blur(18px) saturate(.5);transform:scale(1.2)}
+.signup::before{content:"";position:absolute;inset:0;z-index:-2;background:url("Bilder/framheim.jpg") center/cover;filter:blur(18px) saturate(.5);transform:scale(1.2)}
 .signup::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(12,15,23,.94),rgba(12,15,23,.78))}
 .signup h2{font-weight:600;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.045em;max-width:12ch}
 .signup p{max-width:42ch;margin-top:1.25rem;opacity:.85}
@@ -161,7 +160,8 @@ a{color:inherit}
   .hero__head{grid-template-columns:1fr auto;align-items:end;gap:3rem}
   .hero__side{padding-bottom:1rem}
   .event{grid-template-columns:1.05fr 1fr}
-  .event__media{aspect-ratio:auto;min-height:100%}
+  .event__media{aspect-ratio:auto;min-height:420px}
+  .event__media img{position:absolute;inset:0}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -223,9 +223,8 @@ a{color:inherit}
       </div>
       <article class="event reveal">
         <div class="event__media">
-          <img src="Bilder/framheim-gata.jpg" alt="Framheim: kvitt trehus med blå vindaugskarmar ved vegen i Fossøyane" width="590" height="377" loading="lazy">
+          <img src="Bilder/framheim.jpg" alt="Framheim: kvitt trehus med blå vindaugskarmar ved vegen i Fossøyane" width="1500" height="2000" loading="lazy">
           <div class="date-badge" aria-hidden="true"><b>23</b><small>Okt</small></div>
-          <span class="credit">Bilde: Google Street View</span>
         </div>
         <div class="event__body">
           <h3 class="event__title">Fest i Framheim</h3>
