@@ -10,11 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fest i Framheim">
 <meta property="og:description" content="Fredag 23. oktober, Framheim i Jostedalen. Meld deg på.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js');</script>
 <style>
+/* Fonten ligg på same server som sida, så ingen data går til Google */
+@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("fonts/instrument-sans-latin.woff2") format("woff2")}
 :root{
   --night:#0c0f17;
   --panel:#151a26;
@@ -57,8 +58,7 @@ a{color:inherit}
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background-color .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
 .nav.is-scrolled{background:rgba(12,15,23,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
 .nav .wrap{height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;font-size:1rem;letter-spacing:-.01em;white-space:nowrap}
-.logo__mark{width:30px;height:30px;border-radius:50%;background:var(--text);color:var(--night);display:grid;place-items:center;font-size:.75rem;font-weight:700;letter-spacing:0}
+.nav .pill{margin-left:auto}
 .nav__links{display:none;gap:2rem;font-size:.9375rem;color:var(--muted)}
 .nav__links a{text-decoration:none;transition:color .3s var(--ease)}
 .nav__links a:hover{color:var(--text)}
@@ -69,20 +69,11 @@ a{color:inherit}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(12,15,23,.72) 0%,rgba(12,15,23,.62) 40%,rgba(12,15,23,.92) 85%,var(--night) 100%),
   radial-gradient(60% 50% at 80% 30%,rgba(217,164,65,.14),transparent 70%)}
-.hero__inner{width:100%;padding-top:6.25rem;padding-bottom:2.25rem}
-.status{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem .9rem .4rem .7rem;border-radius:999px;border:1px solid var(--line-2);
-  background:rgba(12,15,23,.4);font-size:.8125rem;font-weight:500;margin-bottom:clamp(1.25rem,3vw,1.75rem)}
-.status__dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--red)}
-.status__dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:ping 2s var(--ease) infinite}
-@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(3);opacity:0}}
+.hero__inner{width:100%;padding-top:7rem;padding-bottom:2.25rem}
 
 .hero__head{display:grid;gap:1.25rem}
 .hero h1{font-weight:600;font-size:clamp(3rem,10.5vw,7.25rem);line-height:1;letter-spacing:-.045em}
 .hero h1 .row{display:block}
-.chip-img{display:inline-block;vertical-align:middle;width:1.55em;height:.82em;margin:0 .08em .12em;border-radius:999px;overflow:hidden;
-  background:url("Bilder/framheim-gata.jpg") 55% 45%/cover;box-shadow:0 0 0 2px rgba(241,235,224,.25);
-  transition:width .7s var(--ease)}
-.hero h1:hover .chip-img{width:2.1em}
 .hero__side{font-size:clamp(.9375rem,1.4vw,1.0625rem);color:var(--text);opacity:.8;max-width:26ch;line-height:1.5}
 .hero__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(1.75rem,4vw,2.5rem)}
 
@@ -140,6 +131,8 @@ a{color:inherit}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
 /* Footer */
+.footer a{text-underline-offset:3px;transition:color .3s var(--ease)}
+.footer a:hover{color:var(--text)}
 .footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding-top:2rem;padding-bottom:2rem;font-size:.8125rem;color:var(--muted)}
 
 /* Fast mobilknapp */
@@ -162,9 +155,6 @@ a{color:inherit}
   .event{grid-template-columns:1.05fr 1fr}
   .event__media{aspect-ratio:auto;min-height:100%}
 }
-@media (max-width:340px){
-  .logo span:last-child{display:none}
-}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
@@ -175,7 +165,6 @@ a{color:inherit}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo" href="#top"><span class="logo__mark">FiF</span><span>Fest i Framheim</span></a>
     <nav class="nav__links" aria-label="Hovudmeny">
       <a href="#info">Info</a>
       <a href="#pamelding">Påmelding</a>
@@ -188,11 +177,10 @@ a{color:inherit}
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="wrap hero__inner">
-      <p class="status reveal-up d1"><span class="status__dot" aria-hidden="true"></span>Påmeldinga er open</p>
       <div class="hero__head">
         <h1 id="hero-title" class="reveal-up d2">
           <span class="row">Fest i</span>
-          <span class="row"><span class="chip-img" aria-hidden="true"></span> Framheim.</span>
+          <span class="row">Framheim.</span>
         </h1>
         <p class="hero__side reveal-up d3">Fredag 23. oktober, 21:00 til 03:00. Fossøyane 120 i Jostedalen.</p>
       </div>
@@ -269,7 +257,7 @@ a{color:inherit}
 </main>
 
 <footer class="footer">
-  <div class="wrap"><p>Fest i Framheim · 23.10.2026</p><p>Fossøyane 120, Jostedalen</p></div>
+  <div class="wrap"><p>Fest i Framheim · 23.10.2026</p><p><a href="personvern.html">Personvern</a></p></div>
 </footer>
 
 <div class="mobile-cta">
