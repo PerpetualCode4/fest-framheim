@@ -121,6 +121,17 @@ a{color:inherit}
 @keyframes puff{0%{opacity:0;transform:translate(0,0) scale(.4)}12%{opacity:.85}100%{opacity:0;transform:translate(18px,-80px) scale(2.6)}}
 @keyframes wisp{0%{opacity:0;transform:translate(0,0) scale(.6)}20%{opacity:.7}100%{opacity:0;transform:translate(-6px,-60px) scale(2)}}
 
+/* Discolys i vindauga på Framheim */
+.win{position:absolute;z-index:0;pointer-events:none;mix-blend-mode:screen;color:#d9a441;background:currentColor;opacity:.6;
+  box-shadow:0 0 18px 6px currentColor,0 0 60px 20px currentColor;filter:blur(1px);animation:flash 2.4s steps(1) infinite}
+.win:nth-of-type(2){animation-delay:-.6s}.win:nth-of-type(3){animation-delay:-1.5s}
+@keyframes flash{0%{color:#d9a441}25%{color:#c04bd6}50%{color:#5b8cff}75%{color:#c8402b}}
+.sweep{position:absolute;z-index:0;top:10%;left:0;width:70vmin;height:70vmin;margin:-35vmin 0 0 -35vmin;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,currentColor,transparent);mix-blend-mode:screen;opacity:.18;
+  animation:sweep-x 7s ease-in-out infinite alternate,flash 4.8s steps(1) infinite}
+.sweep+.sweep{top:55%;animation-duration:9s,4.8s;animation-delay:-3s,-2.4s;animation-direction:alternate-reverse,normal}
+@keyframes sweep-x{from{transform:translateX(10vw)}to{transform:translateX(95vw)}}
+
 /* Nedteljing */
 .count__lead{display:flex;align-items:center;gap:.9rem}
 .face{width:56px;height:56px;flex:none}
@@ -143,22 +154,23 @@ a{color:inherit}
 .clock__unit{font-size:.8125rem;color:var(--muted)}
 .count__msg{font-weight:600;font-size:clamp(1.75rem,6vw,2.75rem);letter-spacing:-.03em;color:var(--gold)}
 
-/* Discolys mellom nedteljinga og info */
-.disco{position:relative;height:170px;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(#000 65%,transparent);mask-image:linear-gradient(#000 65%,transparent)}
-.disco__string{position:absolute;left:50%;top:0;width:1px;height:28px;background:var(--line-2)}
-.disco__ball{position:absolute;left:50%;top:28px;width:44px;height:44px;margin-left:-22px;border-radius:50%;z-index:2;
-  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.95),transparent 30%),
-    repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.35) 5px 6px),
-    repeating-linear-gradient(90deg,#8a909c 0 5px,#d5d9df 5px 6px,#6b7280 6px 11px);
-  background-size:auto,auto,22px 100%;animation:ball 1.4s linear infinite;box-shadow:0 0 24px rgba(241,235,224,.25)}
-@keyframes ball{to{background-position:0 0,0 0,22px 0}}
-.beam{position:absolute;left:50%;top:50px;width:90px;height:240px;margin-left:-45px;transform-origin:50% 0;mix-blend-mode:screen;opacity:.35;
-  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%);background:linear-gradient(var(--c),transparent 85%);
-  animation:sweep var(--t) ease-in-out var(--d) infinite alternate}
-@keyframes sweep{from{transform:rotate(var(--a))}to{transform:rotate(calc(var(--a) * -1))}}
-.spot{position:absolute;bottom:18px;left:0;width:70px;height:16px;border-radius:50%;background:var(--c);filter:blur(10px);opacity:.5;mix-blend-mode:screen;
-  animation:slide var(--t) ease-in-out var(--d) infinite alternate}
-@keyframes slide{from{transform:translateX(-20vw)}to{transform:translateX(100vw)}}
+/* Pikselfigur som skålar og kastar glaset i lufta */
+.toast{position:relative;height:200px}
+.toaster{position:absolute;left:50%;bottom:16px;width:80px;height:160px;margin-left:-40px}
+.toaster svg{position:absolute;shape-rendering:crispEdges}
+.toaster__body{left:0;top:64px;width:64px;height:96px}
+.toaster__shadow{position:absolute;left:4px;bottom:-4px;width:56px;height:8px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.7),transparent)}
+.toaster__glass{left:52px;top:108px;width:16px;height:20px;transform-box:fill-box;transform-origin:50% 50%;animation:toss 3.6s ease-in-out infinite}
+.toaster__down{animation:arm-down2 3.6s steps(1) infinite}
+.toaster__up{opacity:0;animation:arm-up2 3.6s steps(1) infinite}
+.toaster__say{position:absolute;left:72px;top:36px;padding:.3rem .6rem;border-radius:10px 10px 10px 2px;background:var(--text);color:var(--night);
+  font-weight:700;font-size:.875rem;white-space:nowrap;opacity:0;animation:say 3.6s steps(1) infinite}
+@keyframes arm-down2{0%{opacity:1}30%{opacity:0}88%{opacity:1}}
+@keyframes arm-up2{0%{opacity:0}30%{opacity:1}88%{opacity:0}}
+@keyframes say{0%{opacity:0}32%{opacity:1}72%{opacity:0}}
+@keyframes toss{0%,28%{transform:translate(0,0) rotate(0)}36%{transform:translate(0,-48px) rotate(0)}
+  50%{transform:translate(6px,-110px) rotate(270deg)}58%{transform:translate(6px,-124px) rotate(400deg)}
+  72%{transform:translate(2px,-60px) rotate(690deg)}78%,86%{transform:translate(0,-48px) rotate(720deg)}96%,100%{transform:translate(0,0) rotate(720deg)}}
 
 /* Seksjonar */
 .section{padding:var(--section) 0}
@@ -289,6 +301,8 @@ button.pill{cursor:pointer}
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="fog" aria-hidden="true"><span></span><span></span><span></span></div>
     <canvas class="fizz" id="fizz" aria-hidden="true"></canvas>
+    <span class="win" aria-hidden="true"></span><span class="win" aria-hidden="true"></span><span class="win" aria-hidden="true"></span>
+    <span class="sweep" aria-hidden="true"></span><span class="sweep" aria-hidden="true"></span>
     <div class="smoker" aria-hidden="true">
       <span class="puff"></span><span class="puff"></span><span class="puff"></span>
       <span class="puff puff--wisp"></span><span class="puff puff--wisp"></span>
@@ -334,9 +348,13 @@ button.pill{cursor:pointer}
     </div>
   </section>
 
-  <div class="disco" aria-hidden="true">
-    <span class="disco__string"></span><span class="beam" style="--c:#d9a441;--a:55deg;--t:3.2s;--d:0s"></span><span class="beam" style="--c:#c8402b;--a:-45deg;--t:2.6s;--d:-0.8s"></span><span class="beam" style="--c:#5b8cff;--a:40deg;--t:3.8s;--d:-1.6s"></span><span class="beam" style="--c:#c04bd6;--a:-60deg;--t:3s;--d:-0.4s"></span><span class="beam" style="--c:#f1ebe0;--a:30deg;--t:2.2s;--d:-1.2s"></span><span class="spot" style="--c:#d9a441;--t:4.2s;--d:0s"></span><span class="spot" style="--c:#c8402b;--t:5.4s;--d:-2s"></span><span class="spot" style="--c:#5b8cff;--t:3.6s;--d:-1s"></span><span class="spot" style="--c:#c04bd6;--t:4.8s;--d:-3s"></span><span class="spot" style="--c:#f1ebe0;--t:6s;--d:-1.5s"></span>
-    <span class="disco__ball"></span>
+  <div class="toast" aria-hidden="true">
+    <div class="toaster">
+      <span class="toaster__say">Skål!</span>
+      <span class="toaster__shadow"></span>
+      <svg class="toaster__body" viewBox="0 0 16 24"><rect x="5" y="0" width="6" height="2" fill="#c99a4a"/><rect x="4" y="1" width="1" height="3" fill="#c99a4a"/><rect x="5" y="2" width="6" height="5" fill="#e0b08a"/><rect x="9" y="4" width="1" height="1" fill="#1a1410"/><rect x="8" y="6" width="2" height="1" fill="#8a4a3a"/><rect x="4" y="7" width="8" height="9" fill="#8f2d22"/><rect x="4" y="7" width="8" height="1" fill="#a83a2c"/><rect x="5" y="16" width="3" height="6" fill="#1c2231"/><rect x="8" y="16" width="3" height="6" fill="#1c2231"/><rect x="4" y="22" width="4" height="2" fill="#0b0d12"/><rect x="8" y="22" width="4" height="2" fill="#0b0d12"/><g class="toaster__down"><rect x="12" y="8" width="2" height="6" fill="#8f2d22"/><rect x="12" y="14" width="2" height="1" fill="#e0b08a"/></g><g class="toaster__up"><rect x="12" y="7" width="2" height="2" fill="#8f2d22"/><rect x="12" y="3" width="2" height="4" fill="#8f2d22"/><rect x="12" y="2" width="2" height="1" fill="#e0b08a"/></g></svg>
+      <svg class="toaster__glass" viewBox="0 0 4 5"><rect x="0" y="0" width="4" height="1" fill="#f1ebe0"/><rect x="0" y="1" width="4" height="4" fill="#e9b955"/><rect x="0" y="1" width="1" height="4" fill="#f3cf7a"/></svg>
+    </div>
   </div>
 
   <section class="section" id="info" style="padding-top:clamp(1.5rem,4vw,2.5rem)" aria-labelledby="info-title">
@@ -627,6 +645,9 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
 (function () {
   var hero = document.querySelector('.hero'), bg = document.querySelector('.hero__bg'), sm = document.querySelector('.smoker');
   var IMG_W = 1500, IMG_H = 2000, DOOR_X = .885, DOOR_FOOT = .605, DOOR_H = .1;
+  /* Vindauga i biletet som brøkdel av breidd og høgd: venstre, topp, høgre, botn */
+  var WINS = [[.475, .445, .535, .515], [.625, .462, .678, .53], [.872, .51, .9, .57]];
+  var wins = document.querySelectorAll('.win');
   function place() {
     var mob = innerWidth < 768, fx = mob ? .875 : DOOR_X, fy = mob ? .8 : DOOR_FOOT, size = mob ? 1.35 : .95;
     var hr = hero.getBoundingClientRect(), r = bg.getBoundingClientRect();
@@ -637,6 +658,12 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
     sm.style.width = w + 'px'; sm.style.height = h + 'px';
     sm.style.left = (x - w * (mob ? .5 : .3)) + 'px'; sm.style.transform = mob ? 'none' : ''; sm.style.top = (y - h) + 'px';
     sm.style.visibility = y > 0 && y < hr.height ? 'visible' : 'hidden';
+    var ox = r.left - hr.left + (r.width - iw) * .5, oy = r.top - hr.top + (r.height - ih) * .45;
+    wins.forEach(function (el, i) {
+      var b = WINS[i];
+      el.style.left = ox + b[0] * iw + 'px'; el.style.top = oy + b[1] * ih + 'px';
+      el.style.width = (b[2] - b[0]) * iw + 'px'; el.style.height = (b[3] - b[1]) * ih + 'px';
+    });
   }
   place(); addEventListener('resize', place);
 })();
