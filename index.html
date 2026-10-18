@@ -167,6 +167,14 @@ a{color:inherit}
 .details dd{font-weight:500;text-align:right}
 .event__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:auto;padding-top:1.75rem}
 
+/* Praktisk */
+.faq{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden}
+.faq__item{background:var(--panel);padding:clamp(1.25rem,3.5vw,2rem)}
+.faq__item h3{font-weight:600;font-size:1.125rem;letter-spacing:-.02em}
+.faq__item p{color:var(--muted);margin-top:.4rem}
+.faq__item a{color:var(--text);text-underline-offset:3px}
+@media (min-width:768px){.faq{grid-template-columns:1fr 1fr}}
+
 /* Påmelding */
 .signup{position:relative;overflow:hidden;border-radius:var(--r-card);isolation:isolate;
   padding:clamp(3rem,8vw,6rem) clamp(1.5rem,6vw,5rem);border:1px solid var(--line)}
@@ -174,7 +182,8 @@ a{color:inherit}
 .signup::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(12,15,23,.94),rgba(12,15,23,.78))}
 .signup h2{font-weight:600;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.045em;max-width:12ch}
 .signup p{max-width:42ch;margin-top:1.25rem;opacity:.85}
-.signup .pill{margin-top:2rem}
+.signup__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+button.pill{cursor:pointer}
 .glasses{position:relative;z-index:1;display:flex;align-items:flex-end;gap:.6rem;margin-bottom:1.5rem}
 .signup>:not(.balloons):not(.glasses){position:relative;z-index:1}
 .balloons{position:absolute;inset:0;z-index:0;pointer-events:none}
@@ -251,6 +260,7 @@ a{color:inherit}
   <div class="wrap">
     <nav class="nav__links" aria-label="Hovudmeny">
       <a href="#info">Info</a>
+      <a href="#praktisk">Praktisk</a>
       <a href="#pamelding">Påmelding</a>
     </nav>
     <a class="pill pill--solid pill--sm js-signup" href="#pamelding">Meld deg på</a>
@@ -343,6 +353,25 @@ a{color:inherit}
     </div>
   </section>
 
+  <section class="section" id="praktisk" style="padding-top:0" aria-labelledby="praktisk-title">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div>
+          <p class="eyebrow">Praktisk</p>
+          <h2 id="praktisk-title">Før du kjem.</h2>
+        </div>
+      </div>
+      <div class="faq reveal">
+        <div class="faq__item"><h3>Kva kostar det?</h3><p>Ingenting. Inngangen er gratis.</p></div>
+        <div class="faq__item"><h3>Kva tek eg med?</h3><p>Eigen drikke og varme klede. Det er oktober i Jostedalen.</p></div>
+        <div class="faq__item"><h3>Er det aldersgrense?</h3><p>Ja, 18 år.</p></div>
+        <div class="faq__item"><h3>Kor er det?</h3><p>Fossøyane 120, det kvite huset ved vegen. <a href="https://www.google.com/maps/search/?api=1&amp;query=Foss%C3%B8yane+120%2C+Jostedalen" target="_blank" rel="noopener">Opne i kart</a>.</p></div>
+        <div class="faq__item"><h3>Kan eg ta med venner?</h3><p>Ja, gjerne. Be dei melde seg på òg, så veit me kor mange me blir.</p></div>
+        <div class="faq__item"><h3>Lurer du på noko anna?</h3><p>Send SMS til <a href="sms:+4748498627">484 98 627</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="pamelding" style="padding-top:0" aria-labelledby="signup-title">
     <div class="wrap">
       <div class="signup reveal">
@@ -431,9 +460,12 @@ a{color:inherit}
         </div>
         <p class="eyebrow">Påmelding</p>
         <h2 id="signup-title">Sjåast i Framheim?</h2>
-        <p>Meld deg på før du kjem, så veit me kor mange me blir.</p>
-        <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
-          <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <p>Det tek eitt minutt. Meld deg på, og send lenkja til den du vil ha med.</p>
+        <div class="signup__ctas">
+          <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
+            <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <button class="pill pill--ghost" type="button" id="share">Send til ein venn</button>
+        </div>
         <p class="signup__alt">Påmeldinga skjer på LetsReg. Får du det ikkje til, send melding til <a href="sms:+4748498627">484 98 627</a>.</p>
       </div>
     </div>
@@ -464,6 +496,25 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
     btn.firstChild.nodeValue = 'Påmelding opnar snart';
   }
 });
+
+/* Deleknapp: delemeny på mobil, elles kopier lenkja, elles SMS */
+(function () {
+  var btn = document.getElementById('share');
+  var url = 'https://fest-framheim.vercel.app/';
+  var text = 'Fest i Framheim fredag 23. okt, 21–03. Blir du med?';
+  btn.addEventListener('click', function () {
+    if (navigator.share) { navigator.share({ title: 'Fest i Framheim', text: text, url: url }).catch(function () {}); return; }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text + ' ' + url).then(function () {
+        btn.textContent = 'Lenkja er kopiert';
+        setTimeout(function () { btn.textContent = 'Send til ein venn'; }, 2500);
+      }, sms);
+      return;
+    }
+    sms();
+  });
+  function sms() { location.href = 'sms:?&body=' + encodeURIComponent(text + ' ' + url); }
+})();
 
 /* Nav får bakgrunn når du scrollar */
 (function () {
