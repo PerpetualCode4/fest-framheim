@@ -62,6 +62,20 @@ a{color:inherit}
 .pill .ico{width:1em;height:1em;transition:transform .45s var(--ease)}
 .pill:hover .ico{transform:translate(2px,-2px)}
 
+/* Invitasjonsport: første skjermen før sida */
+.gate{display:none}
+.js .gate{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:var(--gutter);
+  background:var(--night);text-align:center;transition:opacity .8s var(--ease),transform .9s var(--ease)}
+.gate::before{content:"";position:absolute;inset:0;background:url("Bilder/framheim.jpg") center/cover;filter:blur(22px) saturate(.5);opacity:.35;transform:scale(1.2)}
+.gate::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 45%,rgba(217,164,65,.18),transparent 70%),linear-gradient(rgba(12,15,23,.55),rgba(12,15,23,.9))}
+.gate__inner{position:relative;z-index:1;max-width:620px}
+.gate h2{font-weight:600;font-size:clamp(2.25rem,8vw,4.5rem);line-height:1.02;letter-spacing:-.045em;margin:1rem 0 2.25rem}
+.gate .pill{min-height:56px;padding:1rem 1.8rem;font-size:1rem}
+.gate.is-open{opacity:0;transform:translateY(-6%);pointer-events:none}
+.gate.is-gone{display:none}
+.is-gated{overflow:hidden}
+.is-gated .reveal-up{animation-play-state:paused}
+
 /* Nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background-color .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
 .nav.is-scrolled{background:rgba(12,15,23,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
@@ -83,7 +97,6 @@ a{color:inherit}
 .hero h1{font-weight:600;font-size:clamp(3rem,10.5vw,7.25rem);line-height:1;letter-spacing:-.045em}
 .hero h1 .row{display:block}
 .hero__side{font-size:clamp(1.0625rem,1.6vw,1.1875rem);font-weight:500;color:var(--text);max-width:26ch;line-height:1.5}
-.hero__invite{display:block;margin-top:.6rem;font-weight:400;color:var(--muted)}
 .hero__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(1.75rem,4vw,2.5rem)}
 
 .js .reveal-up{opacity:0;transform:translateY(22px);animation:rise 1s var(--ease) forwards}
@@ -286,6 +299,15 @@ button.pill{cursor:pointer}
 </head>
 <body>
 
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate__inner">
+    <p class="eyebrow reveal-up d1">Fredag 23. oktober · Framheim</p>
+    <h2 id="gate-title" class="reveal-up d2">Har du fått denne lenkja, er du invitert.</h2>
+    <button class="pill pill--solid reveal-up d3" type="button" id="gate-open">Opne invitasjonen
+      <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
+
 <header class="nav" id="nav">
   <div class="wrap">
     <nav class="nav__links" aria-label="Hovudmeny">
@@ -315,7 +337,7 @@ button.pill{cursor:pointer}
           <span class="row">Fest i</span>
           <span class="row">Framheim.</span>
         </h1>
-        <p class="hero__side reveal-up d3">Fredag 23. oktober, 21:00 til 03:00. Fossøyane 120 i Jostedalen.<span class="hero__invite">Har du fått denne lenkja, er du invitert.</span></p>
+        <p class="hero__side reveal-up d3">Fredag 23. oktober, 21:00 til 03:00. Fossøyane 120 i Jostedalen.</p>
       </div>
       <div class="hero__ctas reveal-up d4">
         <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
@@ -523,6 +545,22 @@ button.pill{cursor:pointer}
 </div>
 
 <script>
+/* Invitasjonsport: vist éin gong per økt */
+(function () {
+  var gate = document.getElementById('gate'), root = document.documentElement, seen = false;
+  try { seen = sessionStorage.getItem('framheim-gate') === '1'; } catch (e) {}
+  if (seen) { gate.classList.add('is-gone'); return; }
+  root.classList.add('is-gated');
+  var btn = document.getElementById('gate-open');
+  btn.focus({ preventScroll: true });
+  btn.addEventListener('click', function () {
+    try { sessionStorage.setItem('framheim-gate', '1'); } catch (e) {}
+    gate.classList.add('is-open');
+    root.classList.remove('is-gated');
+    setTimeout(function () { gate.classList.add('is-gone'); }, 900);
+  });
+})();
+
 const LETSREG_URL = "https://www.letsreg.com/no/register/festiframheim_10102026030121#/";
 
 /* Påmeldingsknappar */
