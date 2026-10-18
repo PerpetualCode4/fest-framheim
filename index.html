@@ -298,7 +298,7 @@ button.pill{cursor:pointer}
 <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
   <div class="gate__inner">
     <p class="eyebrow reveal-up d1">Fredag 23. oktober · Framheim</p>
-    <h2 id="gate-title" class="reveal-up d2">Har du fått denne lenkja, er du invitert.</h2>
+    <h2 id="gate-title" class="reveal-up d2">Har du fått denne linken, er du invitert.</h2>
     <button class="pill pill--solid reveal-up d3" type="button" id="gate-open">Opne invitasjonen
       <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
@@ -510,7 +510,7 @@ button.pill{cursor:pointer}
         </div>
         <p class="eyebrow">Påmelding</p>
         <h2 id="signup-title">Sjåast i Framheim?</h2>
-        <p>Har du fått denne lenkja, er du invitert. Ta gjerne med fleire, men sei ifrå kven du tek med. Meld dykk helst på, så me veit kor mange me blir.</p>
+        <p>Har du fått denne linken, er du invitert. Ta gjerne med fleire, men sei ifrå kven du tek med. Meld dykk helst på, så me veit kor mange me blir.</p>
         <div class="signup__ctas">
           <a class="pill pill--solid js-signup" href="#pamelding">Meld deg på
             <svg class="ico" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -572,7 +572,7 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
     if (navigator.share) { navigator.share({ title: 'Fest i Framheim', text: text, url: url }).catch(function () {}); return; }
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text + ' ' + url).then(function () {
-        btn.textContent = 'Lenkja er kopiert';
+        btn.textContent = 'Linken er kopiert';
         setTimeout(function () { btn.textContent = 'Send til ein venn'; }, 2500);
       }, sms);
       return;
