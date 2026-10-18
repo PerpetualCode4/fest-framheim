@@ -148,9 +148,17 @@ a{color:inherit}
 .signup h2{font-weight:600;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.045em;max-width:12ch}
 .signup p{max-width:42ch;margin-top:1.25rem;opacity:.85}
 .signup .pill{margin-top:2rem}
-.glasses{display:flex;align-items:flex-end;gap:.6rem;margin-bottom:1.5rem}
+.glasses{position:relative;z-index:1;display:flex;align-items:flex-end;gap:.6rem;margin-bottom:1.5rem}
+.signup>:not(.balloons):not(.glasses){position:relative;z-index:1}
+.balloons{position:absolute;inset:0;z-index:0;pointer-events:none}
+.balloon{position:absolute;inset:0;transform:translateY(100%)}
+.balloon svg{position:absolute;top:0;width:44px;height:120px;opacity:.6;transform-origin:50% 20%}
+.signup.in .balloon{animation:float-up var(--t,16s) linear var(--d,0s) infinite}
+.signup.in .balloon svg{animation:sway 3.2s ease-in-out infinite alternate}
+@keyframes float-up{from{transform:translateY(100%)}to{transform:translateY(-30%)}}
+@keyframes sway{from{transform:rotate(-6deg) translateX(-4px)}to{transform:rotate(6deg) translateX(4px)}}
 .glass{display:block;width:56px;height:84px;overflow:visible}
-.glass--flute{width:35px}
+.glass--flute,.glass--bottle{width:35px}
 .glass__liquid{transform-box:fill-box;transform:translateY(105%);transition:transform 2.6s var(--ease) .3s}
 .signup.in .glass__liquid{transform:none}
 .glass__bub{transform-box:fill-box;opacity:0}
@@ -159,7 +167,7 @@ a{color:inherit}
 .glass--flute .glass__bub{animation-name:bub2!important}
 @keyframes bub2{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-44px);opacity:0}}
 @keyframes bub{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-62px);opacity:0}}
-@media (min-width:1100px){.glasses{position:absolute;right:clamp(2rem,8vw,6rem);top:50%;margin:-90px 0 0;gap:1.25rem}.glass{width:120px;height:180px}.glass--flute{width:75px}}
+@media (min-width:768px){.glass{width:80px;height:120px}.glass--flute,.glass--bottle{width:50px}.glasses{gap:1rem}}
 .signup__alt{font-size:.875rem;color:var(--muted);opacity:1!important}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
@@ -280,6 +288,23 @@ a{color:inherit}
   <section class="section" id="pamelding" style="padding-top:0" aria-labelledby="signup-title">
     <div class="wrap">
       <div class="signup reveal">
+                <div class="balloons" aria-hidden="true">
+          <div class="balloon" style="--t:15s;--d:0s"><svg viewBox="0 0 44 120" style="left:6%;color:#d9a441">
+            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
+            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
+          <div class="balloon" style="--t:18s;--d:2.5s"><svg viewBox="0 0 44 120" style="left:30%;color:#c8402b">
+            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
+            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
+          <div class="balloon" style="--t:16s;--d:5s"><svg viewBox="0 0 44 120" style="left:55%;color:#f1ebe0">
+            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
+            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
+          <div class="balloon" style="--t:19s;--d:1.2s"><svg viewBox="0 0 44 120" style="left:76%;color:#d9a441">
+            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
+            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
+          <div class="balloon" style="--t:14s;--d:7s"><svg viewBox="0 0 44 120" style="left:90%;color:#c8402b">
+            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
+            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
+        </div>
         <div class="glasses" aria-hidden="true">
         <svg class="glass" viewBox="0 0 80 120">
           <defs>
@@ -314,6 +339,18 @@ a{color:inherit}
           <g fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/><path d="M25 64v44M14 110h22"/>
           </g>
+        </svg>
+        <svg class="glass glass--bottle" viewBox="0 0 50 120">
+          <defs>
+            <clipPath id="bottle-clip"><path d="M20 8h10v20c0 6 12 8 12 18v62a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V46c0-10 12-12 12-18z"/></clipPath>
+            <linearGradient id="bottle-whisky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4892e"/><stop offset="1" stop-color="#8a4513"/></linearGradient>
+          </defs>
+          <g clip-path="url(#bottle-clip)">
+            <g class="glass__liquid"><rect x="0" y="48" width="50" height="70" fill="url(#bottle-whisky)"/></g>
+          </g>
+          <rect x="13" y="66" width="24" height="22" rx="2" fill="#f1ebe0" opacity=".85"/>
+          <rect x="18.5" y="2" width="13" height="8" rx="1.5" fill="#d9a441"/>
+          <path d="M20 8h10v20c0 6 12 8 12 18v62a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V46c0-10 12-12 12-18z" fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
         </svg>
         </div>
         <p class="eyebrow">Påmelding</p>
