@@ -167,16 +167,24 @@ a{color:inherit}
 @keyframes float-up{from{transform:translateY(100%)}to{transform:translateY(-30%)}}
 @keyframes sway{from{transform:rotate(-6deg) translateX(-4px)}to{transform:rotate(6deg) translateX(4px)}}
 .glass{display:block;width:56px;height:84px;overflow:visible}
-.glass--flute,.glass--bottle{width:35px}
+.glass--bottle{width:35px}
+.glass--pour{width:80px;height:109px}
 .glass__liquid{transform-box:fill-box;transform:translateY(105%);transition:transform 2.6s var(--ease) .3s}
 .signup.in .glass__liquid{transform:none}
 .glass__bub{transform-box:fill-box;opacity:0}
 .signup.in .glass__bub{animation:bub 2.8s ease-in infinite}
 .glass__bub:nth-child(2){animation-delay:.9s!important}.glass__bub:nth-child(3){animation-delay:1.7s!important}.glass__bub:nth-child(4){animation-delay:2.3s!important}
-.glass--flute .glass__bub{animation-name:bub2!important}
+.glass--pour .glass__bub{animation-name:bub2!important}
+.pour__bottle{transform:translate(12px,70px)}
+.pour__stream{stroke-dasharray:62;stroke-dashoffset:62;opacity:0}
+.glass--pour .glass__liquid{transition-duration:2.2s;transition-delay:1.3s}
+.signup.in .pour__bottle{animation:pour 4.6s var(--ease) .2s forwards}
+.signup.in .pour__stream{animation:stream 4.6s linear .2s forwards}
+@keyframes pour{0%{transform:translate(12px,70px) rotate(0)}22%,74%{transform:translate(46.4px,-12.4px) rotate(105deg)}100%{transform:translate(12px,70px) rotate(0)}}
+@keyframes stream{0%,20%{stroke-dashoffset:62;opacity:0}22%{opacity:1}32%{stroke-dashoffset:0}70%{opacity:1;stroke-dashoffset:0}76%,100%{opacity:0;stroke-dashoffset:-62}}
 @keyframes bub2{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-44px);opacity:0}}
 @keyframes bub{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-62px);opacity:0}}
-@media (min-width:768px){.glass{width:80px;height:120px}.glass--flute,.glass--bottle{width:50px}.glasses{gap:1rem}}
+@media (min-width:768px){.glass{width:80px;height:120px}.glass--bottle{width:50px}.glass--pour{width:77px;height:104px}.glasses{gap:1rem}}
 .signup__alt{font-size:.875rem;color:var(--muted);opacity:1!important}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
@@ -344,20 +352,26 @@ a{color:inherit}
           </g>
           <path d="M13 8h54l-6 104H19z" fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
         </svg>
-        <svg class="glass glass--flute" viewBox="0 0 50 120" aria-hidden="true">
+        <svg class="glass glass--pour" viewBox="0 -36 115 156">
           <defs>
-            <clipPath id="flute-clip"><path d="M14 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/></clipPath>
+            <clipPath id="flute-clip"><path d="M74 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/></clipPath>
             <linearGradient id="flute-wine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e3a8"/><stop offset="1" stop-color="#d6ae55"/></linearGradient>
           </defs>
           <g clip-path="url(#flute-clip)">
-            <g class="glass__liquid"><rect x="0" y="14" width="50" height="56" fill="url(#flute-wine)"/></g>
+            <g class="glass__liquid"><rect x="60" y="14" width="50" height="56" fill="url(#flute-wine)"/></g>
             <g fill="rgba(255,250,225,.95)">
-              <circle class="glass__bub" cx="25" cy="58" r="1"/><circle class="glass__bub" cx="22" cy="56" r=".8"/>
-              <circle class="glass__bub" cx="28" cy="57" r=".9"/><circle class="glass__bub" cx="25" cy="60" r=".7"/>
+              <circle class="glass__bub" cx="85" cy="58" r="1"/><circle class="glass__bub" cx="82" cy="56" r=".8"/>
+              <circle class="glass__bub" cx="88" cy="57" r=".9"/><circle class="glass__bub" cx="85" cy="60" r=".7"/>
             </g>
           </g>
+          <line class="pour__stream" x1="85" y1="-2" x2="85" y2="60" stroke="#f6e3a8" stroke-width="2.2" stroke-linecap="round"/>
           <g fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/><path d="M25 64v44M14 110h22"/>
+            <path d="M74 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/><path d="M85 64v44M74 110h22"/>
+          </g>
+          <g class="pour__bottle">
+            <path d="M-3.5-40h7v14c0 6 6.5 8 6.5 16v47a3 3 0 0 1-3 3h-14a3 3 0 0 1-3-3v-47c0-8 6.5-10 6.5-16z" fill="#1f3a2c" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
+            <rect x="-4.5" y="-42" width="9" height="12" rx="1.5" fill="#d9a441"/>
+            <rect x="-7" y="8" width="14" height="14" rx="1.5" fill="#f1ebe0" opacity=".85"/>
           </g>
         </svg>
         <svg class="glass glass--bottle" viewBox="0 0 50 120">
