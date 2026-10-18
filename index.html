@@ -104,6 +104,15 @@ a{color:inherit}
 .fizz{width:100%;height:100%}
 
 /* Nedteljing */
+.count__lead{display:flex;align-items:center;gap:.9rem}
+.face{width:56px;height:56px;flex:none}
+.face__ring{fill:none;stroke:var(--line-2);stroke-width:2}
+.face__party{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round}
+.face__tick{stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.face__h,.face__m{stroke:var(--text);stroke-linecap:round}
+.face__h{stroke-width:4}.face__m{stroke-width:2.5}
+.face__s{stroke:var(--gold);stroke-width:1.5;stroke-linecap:round}
+@media (min-width:768px){.face{width:72px;height:72px}}
 .count{border-block:1px solid var(--line)}
 .count .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 2rem;padding-top:1.25rem;padding-bottom:1.5rem}
 @media (max-width:767px){.clock{width:100%;justify-content:space-between}}
@@ -238,7 +247,18 @@ a{color:inherit}
 
   <section class="count reveal-up d5" aria-label="Nedteljing til festen">
     <div class="wrap">
-      <p class="eyebrow" id="count-label">Dørene opnar om</p>
+      <div class="count__lead">
+        <svg class="face" id="face" viewBox="0 0 100 100" role="img" aria-label="Klokka no. Gull markerer festen, 21 til 03.">
+          <circle class="face__ring" cx="50" cy="50" r="44"/>
+          <path class="face__party" d="M8 50a42 42 0 0 1 84 0"/>
+          <line class="face__tick" x1="50" y1="12" x2="50" y2="20" transform="rotate(0 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(30 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(60 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="20" transform="rotate(90 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(120 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(150 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="20" transform="rotate(180 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(210 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(240 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="20" transform="rotate(270 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(300 50 50)"/><line class="face__tick" x1="50" y1="12" x2="50" y2="17" transform="rotate(330 50 50)"/>
+          <line class="face__h" x1="50" y1="50" x2="50" y2="30"/>
+          <line class="face__m" x1="50" y1="50" x2="50" y2="18"/>
+          <line class="face__s" x1="50" y1="58" x2="50" y2="14"/>
+          <circle cx="50" cy="50" r="3" fill="var(--gold)"/>
+        </svg>
+        <p class="eyebrow" id="count-label">Dørene opnar om</p>
+      </div>
       <div class="clock" id="clock" role="timer" aria-live="off">
         <div class="clock__cell"><span class="roll" data-u="d">00</span><span class="clock__unit">dagar</span></div>
         <div class="clock__cell"><span class="roll" data-u="h">00</span><span class="clock__unit">t</span></div>
@@ -444,6 +464,34 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
   }
   tick();
   timer = setInterval(tick, 1000);
+})();
+
+/* Analog klokke: snurrar fram til klokka no, så går ho vidare */
+(function () {
+  var f = document.getElementById('face');
+  var h = f.querySelector('.face__h'), m = f.querySelector('.face__m'), sec = f.querySelector('.face__s');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var t0 = performance.now(), INTRO = reduce ? 0 : 1800;
+  function angles() {
+    var d = new Date(), s = d.getSeconds() + d.getMilliseconds() / 1000;
+    var mi = d.getMinutes() + s / 60;
+    return [(d.getHours() % 12 + mi / 60) * 30, mi * 6, s * 6];
+  }
+  function set(a) {
+    h.setAttribute('transform', 'rotate(' + a[0] + ' 50 50)');
+    m.setAttribute('transform', 'rotate(' + a[1] + ' 50 50)');
+    sec.setAttribute('transform', 'rotate(' + a[2] + ' 50 50)');
+  }
+  function frame(now) {
+    var a = angles(), k = Math.min(1, (now - t0) / (INTRO || 1));
+    if (k < 1) {
+      var e = 1 - Math.pow(1 - k, 3);
+      /* Ein ekstra runde på vegen gjer at visarane snurrar inn */
+      set([a[0] * e + 360 * (1 - e), (a[1] + 720) * e, (a[2] + 1080) * e]);
+    } else set(a);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();
 
 /* Gullbobler som stig opp i toppen */
