@@ -112,6 +112,7 @@ a{color:inherit}
 @keyframes arm-down{0%{opacity:1}55%{opacity:0}80%{opacity:1}}
 @keyframes arm-up{0%{opacity:0}55%{opacity:1}80%{opacity:0}}
 .smoker__ember{animation:glow 1.2s ease-in-out infinite alternate}
+.smoker::after{content:"";position:absolute;left:5%;right:5%;bottom:-4%;height:8%;background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent);z-index:-1}
 .puff{position:absolute;left:72%;top:18%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
   background:rgba(241,235,224,.45);filter:blur(5px);opacity:0;animation:puff 4s ease-out 3.2s infinite}
 .puff:nth-child(2){animation-delay:3.35s}.puff:nth-child(3){animation-delay:3.5s}
@@ -549,18 +550,19 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
   requestAnimationFrame(frame);
 })();
 
-/* Plasser røykaren lent mot døra oppe til høgre i biletet, same kor biletet blir beskore */
+/* Plasser røykaren etter biletet, same kor det blir beskore: lent mot døra på PC, på bakken ved huset på mobil */
 (function () {
   var hero = document.querySelector('.hero'), bg = document.querySelector('.hero__bg'), sm = document.querySelector('.smoker');
   var IMG_W = 1500, IMG_H = 2000, DOOR_X = .885, DOOR_FOOT = .605, DOOR_H = .1;
   function place() {
+    var mob = innerWidth < 768, fx = mob ? .875 : DOOR_X, fy = mob ? .8 : DOOR_FOOT, size = mob ? 1.35 : .95;
     var hr = hero.getBoundingClientRect(), r = bg.getBoundingClientRect();
     var k = Math.max(r.width / IMG_W, r.height / IMG_H), iw = IMG_W * k, ih = IMG_H * k;
-    var x = r.left - hr.left + (r.width - iw) * .5 + DOOR_X * iw;
-    var y = r.top - hr.top + (r.height - ih) * .45 + DOOR_FOOT * ih;
-    var h = Math.max(36, DOOR_H * ih * .95), w = h * 16 / 24;
+    var x = r.left - hr.left + (r.width - iw) * .5 + fx * iw;
+    var y = r.top - hr.top + (r.height - ih) * .45 + fy * ih;
+    var h = Math.max(36, DOOR_H * ih * size), w = h * 16 / 24;
     sm.style.width = w + 'px'; sm.style.height = h + 'px';
-    sm.style.left = (x - w * .3) + 'px'; sm.style.top = (y - h) + 'px';
+    sm.style.left = (x - w * (mob ? .5 : .3)) + 'px'; sm.style.transform = mob ? 'none' : ''; sm.style.top = (y - h) + 'px';
     sm.style.visibility = y > 0 && y < hr.height ? 'visible' : 'hidden';
   }
   place(); addEventListener('resize', place);
