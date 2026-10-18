@@ -168,12 +168,19 @@ a{color:inherit}
 @keyframes sway{from{transform:rotate(-6deg) translateX(-4px)}to{transform:rotate(6deg) translateX(4px)}}
 .glass{display:block;width:56px;height:84px;overflow:visible}
 .glass--bottle{width:35px}
+.glass--smoke{width:49px}
 .glass--pour{width:80px;height:109px}
 .glass__liquid{transform-box:fill-box;transform:translateY(105%);transition:transform 2.6s var(--ease) .3s}
 .signup.in .glass__liquid{transform:none}
 .glass__bub{transform-box:fill-box;opacity:0}
 .signup.in .glass__bub{animation:bub 2.8s ease-in infinite}
 .glass__bub:nth-child(2){animation-delay:.9s!important}.glass__bub:nth-child(3){animation-delay:1.7s!important}.glass__bub:nth-child(4){animation-delay:2.3s!important}
+.smoke{fill:none;stroke:rgba(241,235,224,.5);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:45 140;stroke-dashoffset:185;opacity:0}
+.signup.in .smoke{animation:smoke 4.2s ease-out infinite}
+.signup.in .smoke:nth-of-type(2){animation-delay:1.4s}.signup.in .smoke:nth-of-type(3){animation-delay:2.8s}
+@keyframes smoke{0%{stroke-dashoffset:185;opacity:0;transform:translateX(0)}15%{opacity:1}100%{stroke-dashoffset:20;opacity:0;transform:translateX(4px)}}
+.ember{animation:glow 2.4s ease-in-out infinite alternate}
+@keyframes glow{from{fill:#e0602a}to{fill:#ffb15c}}
 .glass--pour .glass__bub{animation-name:bub2!important}
 .pour__bottle{transform:translate(12px,70px)}
 .pour__stream{stroke-dasharray:62;stroke-dashoffset:62;opacity:0}
@@ -184,7 +191,7 @@ a{color:inherit}
 @keyframes stream{0%,20%{stroke-dashoffset:62;opacity:0}22%{opacity:1}32%{stroke-dashoffset:0}70%{opacity:1;stroke-dashoffset:0}76%,100%{opacity:0;stroke-dashoffset:-62}}
 @keyframes bub2{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-44px);opacity:0}}
 @keyframes bub{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-62px);opacity:0}}
-@media (min-width:768px){.glass{width:80px;height:120px}.glass--bottle{width:50px}.glass--pour{width:77px;height:104px}.glasses{gap:1rem}}
+@media (min-width:768px){.glass{width:80px;height:120px}.glass--bottle{width:50px}.glass--smoke{width:70px}.glass--pour{width:77px;height:104px}.glasses{gap:1rem}}
 .signup__alt{font-size:.875rem;color:var(--muted);opacity:1!important}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
@@ -385,6 +392,18 @@ a{color:inherit}
           <rect x="13" y="66" width="24" height="22" rx="2" fill="#f1ebe0" opacity=".85"/>
           <rect x="18.5" y="2" width="13" height="8" rx="1.5" fill="#d9a441"/>
           <path d="M20 8h10v20c0 6 12 8 12 18v62a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V46c0-10 12-12 12-18z" fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <svg class="glass glass--smoke" viewBox="0 0 70 120">
+          <g>
+            <path class="smoke" d="M18 93c-6-10 6-17 0-27s6-17 0-27s6-17 0-27"/>
+            <path class="smoke" d="M18 93c5-9-5-16 1-26s-6-17 0-27s5-15-1-26"/>
+            <path class="smoke" d="M18 93c-4-8 4-15-1-24s7-18 1-28s-5-16 1-27"/>
+          </g>
+          <path d="M6 100h58l-6 12H12z" fill="#1c2231" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M23 96.2L51 89.4" stroke="#f1ebe0" stroke-width="4.5"/>
+          <path d="M51 89.4L61 87" stroke="#c98a4b" stroke-width="4.5"/>
+          <path d="M20 96.9L23 96.2" stroke="#8d8d8d" stroke-width="4.5"/>
+          <circle class="ember" cx="19" cy="97.1" r="2.4" fill="#e0602a"/>
         </svg>
         </div>
         <p class="eyebrow">Påmelding</p>
