@@ -103,6 +103,24 @@ a{color:inherit}
 @keyframes drift{from{transform:translateX(-10%)}to{transform:translateX(10%)}}
 .fizz{width:100%;height:100%}
 
+/* Pikselperson som røykjer i toppen */
+.smoker{position:absolute;z-index:1;top:5.5rem;right:var(--gutter);width:48px;height:72px;pointer-events:none}
+.smoker svg{display:block;width:100%;height:100%;shape-rendering:crispEdges;image-rendering:pixelated}
+.smoker__up{opacity:0}
+.smoker__down{animation:arm-down 4s steps(1) infinite}
+.smoker__up{animation:arm-up 4s steps(1) infinite}
+@keyframes arm-down{0%{opacity:1}55%{opacity:0}80%{opacity:1}}
+@keyframes arm-up{0%{opacity:0}55%{opacity:1}80%{opacity:0}}
+.smoker__ember{animation:glow 1.2s ease-in-out infinite alternate}
+.puff{position:absolute;left:72%;top:18%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+  background:rgba(241,235,224,.45);filter:blur(5px);opacity:0;animation:puff 4s ease-out 3.2s infinite}
+.puff:nth-child(2){animation-delay:3.35s}.puff:nth-child(3){animation-delay:3.5s}
+.puff--wisp{left:100%;top:56%;width:8px;height:8px;margin:-4px 0 0 -4px;background:rgba(241,235,224,.3);filter:blur(3px);animation:wisp 2.6s ease-out infinite}
+.puff--wisp+.puff--wisp{animation-delay:-1.3s}
+@keyframes puff{0%{opacity:0;transform:translate(0,0) scale(.4)}12%{opacity:.85}100%{opacity:0;transform:translate(18px,-80px) scale(2.6)}}
+@keyframes wisp{0%{opacity:0;transform:translate(0,0) scale(.6)}20%{opacity:.7}100%{opacity:0;transform:translate(-6px,-60px) scale(2)}}
+@media (min-width:768px){.smoker{top:7rem;width:64px;height:96px}}
+
 /* Nedteljing */
 .count__lead{display:flex;align-items:center;gap:.9rem}
 .face{width:56px;height:56px;flex:none}
@@ -177,7 +195,7 @@ a{color:inherit}
 .glass__bub:nth-child(2){animation-delay:.9s!important}.glass__bub:nth-child(3){animation-delay:1.7s!important}.glass__bub:nth-child(4){animation-delay:2.3s!important}
 .smoke{fill:none;stroke:rgba(241,235,224,.5);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:45 140;stroke-dashoffset:185;opacity:0}
 .signup.in .smoke{animation:smoke 4.2s ease-out infinite}
-.signup.in .smoke:nth-of-type(2){animation-delay:1.4s}.signup.in .smoke:nth-of-type(3){animation-delay:2.8s}
+.signup.in .smoke:nth-of-type(2){animation-delay:-1.4s}.signup.in .smoke:nth-of-type(3){animation-delay:-2.8s}
 @keyframes smoke{0%{stroke-dashoffset:185;opacity:0;transform:translateX(0)}15%{opacity:1}100%{stroke-dashoffset:20;opacity:0;transform:translateX(4px)}}
 .ember{animation:glow 2.4s ease-in-out infinite alternate}
 @keyframes glow{from{fill:#e0602a}to{fill:#ffb15c}}
@@ -244,6 +262,11 @@ a{color:inherit}
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="fog" aria-hidden="true"><span></span><span></span><span></span></div>
     <canvas class="fizz" id="fizz" aria-hidden="true"></canvas>
+    <div class="smoker" aria-hidden="true">
+      <span class="puff"></span><span class="puff"></span><span class="puff"></span>
+      <span class="puff puff--wisp"></span><span class="puff puff--wisp"></span>
+      <svg viewBox="0 0 16 24"><rect x="5" y="0" width="6" height="2" fill="#2a1f1a"/><rect x="4" y="1" width="1" height="3" fill="#2a1f1a"/><rect x="5" y="2" width="6" height="5" fill="#e0b08a"/><rect x="9" y="4" width="1" height="1" fill="#1a1410"/><rect x="4" y="7" width="8" height="9" fill="#3b4a63"/><rect x="4" y="7" width="8" height="1" fill="#4a5b78"/><rect x="5" y="16" width="3" height="6" fill="#1c2231"/><rect x="8" y="16" width="3" height="6" fill="#1c2231"/><rect x="4" y="22" width="4" height="2" fill="#0b0d12"/><rect x="8" y="22" width="4" height="2" fill="#0b0d12"/><g class="smoker__down"><rect x="12" y="8" width="2" height="6" fill="#3b4a63"/><rect x="12" y="14" width="2" height="1" fill="#e0b08a"/><rect x="14" y="14" width="1" height="1" fill="#f1ebe0"/><rect class="smoker__ember" x="15" y="14" width="1" height="1" fill="#e0602a"/></g><g class="smoker__up"><rect x="12" y="8" width="2" height="2" fill="#3b4a63"/><rect x="11" y="6" width="2" height="2" fill="#3b4a63"/><rect x="10" y="5" width="2" height="1" fill="#e0b08a"/><rect x="12" y="5" width="1" height="1" fill="#f1ebe0"/><rect class="smoker__ember" x="13" y="5" width="1" height="1" fill="#e0602a"/></g></svg>
+    </div>
     <div class="wrap hero__inner">
       <div class="hero__head">
         <h1 id="hero-title" class="reveal-up d2">
