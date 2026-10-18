@@ -125,16 +125,6 @@ a{color:inherit}
 .clock__unit{font-size:.8125rem;color:var(--muted)}
 .count__msg{font-weight:600;font-size:clamp(1.75rem,6vw,2.75rem);letter-spacing:-.03em;color:var(--gold)}
 
-/* Varebil som køyrer forbi */
-.road{position:relative;height:96px;overflow:hidden;border-bottom:1px solid var(--line)}
-.road::after{content:"";position:absolute;left:0;right:0;bottom:14px;border-top:2px dashed rgba(241,235,224,.12)}
-.van{position:absolute;left:0;bottom:15px;width:160px;height:auto;animation:drive 13s linear infinite;will-change:transform}
-.van__body{animation:bump .35s ease-in-out infinite alternate}
-.van__wheel{transform-box:fill-box;transform-origin:center;animation:spin .5s linear infinite}
-@keyframes drive{from{transform:translateX(-180px)}to{transform:translateX(calc(100vw + 20px))}}
-@keyframes bump{to{transform:translateY(-1px)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-
 /* Seksjonar */
 .section{padding:var(--section) 0}
 .section__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 2rem;margin-bottom:clamp(2rem,5vw,3rem)}
@@ -286,34 +276,6 @@ a{color:inherit}
       <p class="count__msg" id="clock-msg" hidden></p>
     </div>
   </section>
-
-  <div class="road" aria-hidden="true">
-    <svg class="van" viewBox="0 -4 230 94">
-      <defs>
-        <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#f6e3a8" stop-opacity=".45"/><stop offset="1" stop-color="#f6e3a8" stop-opacity="0"/></linearGradient>
-        <linearGradient id="van-paint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#25407a"/><stop offset=".55" stop-color="#1b315f"/><stop offset="1" stop-color="#132344"/></linearGradient>
-      </defs>
-      <path d="M189 51 L230 38 V70 Z" fill="url(#beam)"/>
-      <g class="van__body">
-        <rect x="24" y="-3" width="100" height="2.5" rx="1" fill="#15181e"/>
-        <rect x="32" y="-3" width="4" height="9" fill="#15181e"/><rect x="112" y="-3" width="4" height="9" fill="#15181e"/>
-        <path d="M14 72V12q0-6 7-6h105q7 0 11 6l21 28q25 4 30 10l2 22z" fill="url(#van-paint)" stroke="rgba(241,235,224,.22)" stroke-width="1.2" stroke-linejoin="round"/>
-        <path d="M116 13h17l18 25h-35z" fill="#8fa6bd" opacity=".5"/>
-        <path d="M137 12l21 28" stroke="rgba(241,235,224,.35)" stroke-width="1.2"/>
-        <path d="M112 8v62M80 8v62" stroke="rgba(0,0,0,.4)" stroke-width="1.1"/>
-        <rect x="104" y="44" width="6" height="2" rx="1" fill="#0d1018"/><rect x="72" y="44" width="6" height="2" rx="1" fill="#0d1018"/>
-        <rect x="145" y="30" width="7" height="10" rx="2" fill="#15181e"/>
-        <rect x="24" y="55" width="140" height="4.5" rx="2" fill="#15181e"/>
-        <rect x="24" y="69" width="146" height="6" fill="#15181e"/>
-        <path d="M170 57h20q3 0 3 4v13q0 4-4 4h-19z" fill="#15181e"/>
-        <rect x="10" y="61" width="16" height="16" rx="3" fill="#15181e"/>
-        <path d="M178 46l11 4.5v5l-11-2z" fill="#e8edf0"/>
-        <rect x="14" y="18" width="3" height="20" rx="1" fill="#c8402b"/>
-        <path d="M29 76a21 21 0 0 1 42 0M129 76a21 21 0 0 1 42 0" fill="none" stroke="#15181e" stroke-width="6"/>
-      </g>
-      <g class="van__wheel"><circle cx="50" cy="76" r="13" fill="#0b0d12" stroke="#2a2f38" stroke-width="1.5"/><circle cx="50" cy="76" r="8.5" fill="#c9ced4"/><circle cx="55.50" cy="76.00" r="1.1" fill="#6b727c"/><circle cx="52.75" cy="80.76" r="1.1" fill="#6b727c"/><circle cx="47.25" cy="80.76" r="1.1" fill="#6b727c"/><circle cx="44.50" cy="76.00" r="1.1" fill="#6b727c"/><circle cx="47.25" cy="71.24" r="1.1" fill="#6b727c"/><circle cx="52.75" cy="71.24" r="1.1" fill="#6b727c"/><circle cx="50" cy="76" r="2.6" fill="#8a9099"/></g><g class="van__wheel"><circle cx="150" cy="76" r="13" fill="#0b0d12" stroke="#2a2f38" stroke-width="1.5"/><circle cx="150" cy="76" r="8.5" fill="#c9ced4"/><circle cx="155.50" cy="76.00" r="1.1" fill="#6b727c"/><circle cx="152.75" cy="80.76" r="1.1" fill="#6b727c"/><circle cx="147.25" cy="80.76" r="1.1" fill="#6b727c"/><circle cx="144.50" cy="76.00" r="1.1" fill="#6b727c"/><circle cx="147.25" cy="71.24" r="1.1" fill="#6b727c"/><circle cx="152.75" cy="71.24" r="1.1" fill="#6b727c"/><circle cx="150" cy="76" r="2.6" fill="#8a9099"/></g>
-    </svg>
-  </div>
 
   <section class="section" id="info" aria-labelledby="info-title">
     <div class="wrap">
