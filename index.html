@@ -193,28 +193,32 @@ a{color:inherit}
 .event__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:auto;padding-top:1.75rem}
 
 /* Praktisk */
-.acc{border-top:1px solid var(--line)}
-.acc__item{position:relative;border-bottom:1px solid var(--line)}
-.acc__item::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
-.acc__item:hover::after,.acc__item.open::after{transform:scaleX(1)}
-.acc__q{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:2.25rem 1fr auto;align-items:center;gap:1rem;padding:1.35rem 0;cursor:pointer;
-  font-weight:600;font-size:clamp(1.25rem,3.6vw,2rem);letter-spacing:-.03em;line-height:1.15;color:var(--text)}
-.acc__q:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:4px}
-.acc__n{font-size:.8125rem;font-weight:600;color:var(--gold);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.acc__t{transition:transform .5s var(--ease),color .3s}
-.acc__q:hover .acc__t{transform:translateX(6px)}
-.acc__ico{position:relative;width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);color:var(--text);transition:transform .55s var(--ease),background-color .3s,border-color .3s,color .3s}
-.acc__ico::before,.acc__ico::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.6px;margin:-.8px 0 0 -6px;background:currentColor;border-radius:1px}
-.acc__ico::after{transform:rotate(90deg)}
-.acc__q:hover .acc__ico{border-color:var(--gold)}
-.open .acc__ico{transform:rotate(135deg);background:var(--gold);border-color:var(--gold);color:var(--night)}
-.acc__a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
-.acc__a>div{overflow:hidden}
-.acc__a p{color:var(--muted);max-width:52ch;padding:0 3.5rem 1.5rem 3.25rem;opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .55s var(--ease)}
-.acc__a a{color:var(--text);text-underline-offset:3px}
-.open .acc__a{grid-template-rows:1fr}
-.open .acc__a p{opacity:1;transform:none;transition-delay:.12s}
-.js .acc .reveal{transition-delay:calc(var(--i) * 90ms)}
+.ticker{overflow:hidden;border-block:1px solid var(--line);padding:1rem 0;margin-bottom:clamp(2.5rem,6vw,4rem)}
+.ticker__track{display:flex;width:max-content;animation:ticker 28s linear infinite}
+.ticker__track span{display:flex;align-items:center;gap:1.5rem;padding-right:1.5rem;white-space:nowrap;font-weight:600;font-size:clamp(2rem,7vw,4.5rem);line-height:1;letter-spacing:-.04em}
+.ticker__track i{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(241,235,224,.55)}
+.ticker__track b{width:.35em;height:.35em;border-radius:50%;background:var(--gold);flex:none}
+@keyframes ticker{to{transform:translateX(-50%)}}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;min-height:150px;
+  padding:clamp(1.25rem,3vw,2rem);background:var(--panel);border:1px solid var(--line);border-radius:var(--r-card);
+  transition:border-color .4s var(--ease),transform .6s var(--ease)}
+.tile::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(217,164,65,.16),transparent 70%)}
+.tile:hover{border-color:rgba(217,164,65,.45);transform:translateY(-3px)}
+.tile:hover::before{opacity:1}
+.tile--wide{grid-column:span 2}
+.tile__k{font-size:.8125rem;font-weight:500;color:var(--muted)}
+.tile__v{display:block;overflow:hidden;font-weight:600;font-size:clamp(1.875rem,6vw,3.5rem);line-height:1.05;letter-spacing:-.045em;padding-bottom:.05em}
+.tile__v>span{display:inline-block}
+.tile__v--gold{color:var(--gold)}
+.tile__n{color:var(--muted);font-size:.9375rem;margin-top:.5rem}
+.tile a{color:var(--text);text-underline-offset:3px}
+a.tile__v{text-decoration:none;color:var(--gold)}
+.js .bento .reveal{transition-delay:calc(var(--i) * 80ms)}
+.js .tile__v>span{transform:translateY(105%);transition:transform 1s var(--ease) calc(var(--i) * 80ms + .2s)}
+.js .reveal.in .tile__v>span{transform:none}
+@media (min-width:768px){.bento{grid-template-columns:repeat(3,1fr)}.tile{min-height:210px}.tile--wide{grid-column:auto}.tile--d2{grid-column:span 2}.tile--full{grid-column:span 3}}
 
 /* Påmelding */
 .signup{position:relative;overflow:hidden;border-radius:var(--r-card);isolation:isolate;
@@ -370,6 +374,7 @@ button.pill{cursor:pointer}
   </section>
 
   <section class="section" id="praktisk" style="padding-top:clamp(2.5rem,6vw,4rem)" aria-labelledby="praktisk-title">
+    <div class="ticker" aria-hidden="true"><div class="ticker__track"><span>Fredag 23.10<b></b><i>Framheim</i><b></b>21–03<b></b><i>Gratis</i><b></b>18+<b></b></span><span>Fredag 23.10<b></b><i>Framheim</i><b></b>21–03<b></b><i>Gratis</i><b></b>18+<b></b></span></div></div>
     <div class="wrap">
       <div class="section__head reveal">
         <div>
@@ -377,31 +382,13 @@ button.pill{cursor:pointer}
           <h2 id="praktisk-title">Før du kjem.</h2>
         </div>
       </div>
-      <div class="acc">
-        <div class="acc__item reveal open" style="--i:0">
-          <button class="acc__q" type="button" id="q1" aria-expanded="true" aria-controls="a1"><span class="acc__n">01</span><span class="acc__t">Kva kostar det?</span><span class="acc__ico" aria-hidden="true"></span></button>
-          <div class="acc__a" id="a1" role="region" aria-labelledby="q1"><div><p>Ingenting. Inngangen er gratis.</p></div></div>
-        </div>
-        <div class="acc__item reveal" style="--i:1">
-          <button class="acc__q" type="button" id="q2" aria-expanded="false" aria-controls="a2"><span class="acc__n">02</span><span class="acc__t">Kva tek eg med?</span><span class="acc__ico" aria-hidden="true"></span></button>
-          <div class="acc__a" id="a2" role="region" aria-labelledby="q2"><div><p>Eigen drikke og varme klede. Det er oktober i Jostedalen.</p></div></div>
-        </div>
-        <div class="acc__item reveal" style="--i:2">
-          <button class="acc__q" type="button" id="q3" aria-expanded="false" aria-controls="a3"><span class="acc__n">03</span><span class="acc__t">Er det aldersgrense?</span><span class="acc__ico" aria-hidden="true"></span></button>
-          <div class="acc__a" id="a3" role="region" aria-labelledby="q3"><div><p>Ja, 18 år.</p></div></div>
-        </div>
-        <div class="acc__item reveal" style="--i:3">
-          <button class="acc__q" type="button" id="q4" aria-expanded="false" aria-controls="a4"><span class="acc__n">04</span><span class="acc__t">Kor er det?</span><span class="acc__ico" aria-hidden="true"></span></button>
-          <div class="acc__a" id="a4" role="region" aria-labelledby="q4"><div><p>Fossøyane 120, det kvite huset ved vegen. <a href="https://www.google.com/maps/search/?api=1&amp;query=Foss%C3%B8yane+120%2C+Jostedalen" target="_blank" rel="noopener">Opne i kart</a>.</p></div></div>
-        </div>
-        <div class="acc__item reveal" style="--i:4">
-          <button class="acc__q" type="button" id="q5" aria-expanded="false" aria-controls="a5"><span class="acc__n">05</span><span class="acc__t">Kan eg ta med venner?</span><span class="acc__ico" aria-hidden="true"></span></button>
-          <div class="acc__a" id="a5" role="region" aria-labelledby="q5"><div><p>Ja, gjerne. Sei ifrå kven du tek med, og be dei melde seg på òg.</p></div></div>
-        </div>
-        <div class="acc__item reveal" style="--i:5">
-          <button class="acc__q" type="button" id="q6" aria-expanded="false" aria-controls="a6"><span class="acc__n">06</span><span class="acc__t">Lurer du på noko anna?</span><span class="acc__ico" aria-hidden="true"></span></button>
-          <div class="acc__a" id="a6" role="region" aria-labelledby="q6"><div><p>Send SMS til <a href="sms:+4748498627">484 98 627</a>.</p></div></div>
-        </div>
+      <div class="bento">
+        <div class="tile reveal" style="--i:0"><span class="tile__k">Pris</span><div><span class="tile__v tile__v--gold"><span>Gratis.</span></span><p class="tile__n">Inngangen er gratis.</p></div></div>
+        <div class="tile reveal" style="--i:1"><span class="tile__k">Alder</span><div><span class="tile__v"><span>18+</span></span></div></div>
+        <div class="tile reveal tile--wide" style="--i:2"><span class="tile__k">Ta med</span><div><span class="tile__v"><span>Eigen drikke.</span></span><p class="tile__n">Og varme klede. Det er oktober i Jostedalen.</p></div></div>
+        <div class="tile reveal tile--wide tile--d2" style="--i:3"><span class="tile__k">Stad</span><div><span class="tile__v"><span>Fossøyane 120</span></span><p class="tile__n">Det kvite huset ved vegen. <a href="https://www.google.com/maps/search/?api=1&amp;query=Foss%C3%B8yane+120%2C+Jostedalen" target="_blank" rel="noopener">Opne i kart</a></p></div></div>
+        <div class="tile reveal tile--wide" style="--i:4"><span class="tile__k">Venner</span><div><span class="tile__v"><span>Ta dei med.</span></span><p class="tile__n">Sei ifrå kven du tek med, og be dei melde seg på.</p></div></div>
+        <div class="tile reveal tile--wide tile--full" style="--i:5"><span class="tile__k">Spørsmål</span><div><a class="tile__v" href="sms:+4748498627"><span>484 98 627</span></a><p class="tile__n">Send ein SMS, så svarar me.</p></div></div>
       </div>
     </div>
   </section>
@@ -602,11 +589,12 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
   function sms() { location.href = 'sms:?&body=' + encodeURIComponent(text + ' ' + url); }
 })();
 
-/* Spørsmål som opnar og lukkar seg */
-document.querySelectorAll('.acc__q').forEach(function (q) {
-  q.addEventListener('click', function () {
-    var open = q.parentNode.classList.toggle('open');
-    q.setAttribute('aria-expanded', open);
+/* Lys som følgjer peikaren på korta */
+document.querySelectorAll('.tile').forEach(function (t) {
+  t.addEventListener('pointermove', function (e) {
+    var r = t.getBoundingClientRect();
+    t.style.setProperty('--mx', e.clientX - r.left + 'px');
+    t.style.setProperty('--my', e.clientY - r.top + 'px');
   });
 });
 
