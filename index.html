@@ -143,6 +143,23 @@ a{color:inherit}
 .clock__unit{font-size:.8125rem;color:var(--muted)}
 .count__msg{font-weight:600;font-size:clamp(1.75rem,6vw,2.75rem);letter-spacing:-.03em;color:var(--gold)}
 
+/* Discolys mellom nedteljinga og info */
+.disco{position:relative;height:170px;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(#000 65%,transparent);mask-image:linear-gradient(#000 65%,transparent)}
+.disco__string{position:absolute;left:50%;top:0;width:1px;height:28px;background:var(--line-2)}
+.disco__ball{position:absolute;left:50%;top:28px;width:44px;height:44px;margin-left:-22px;border-radius:50%;z-index:2;
+  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.95),transparent 30%),
+    repeating-linear-gradient(0deg,transparent 0 5px,rgba(0,0,0,.35) 5px 6px),
+    repeating-linear-gradient(90deg,#8a909c 0 5px,#d5d9df 5px 6px,#6b7280 6px 11px);
+  background-size:auto,auto,22px 100%;animation:ball 1.4s linear infinite;box-shadow:0 0 24px rgba(241,235,224,.25)}
+@keyframes ball{to{background-position:0 0,0 0,22px 0}}
+.beam{position:absolute;left:50%;top:50px;width:90px;height:240px;margin-left:-45px;transform-origin:50% 0;mix-blend-mode:screen;opacity:.35;
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%);background:linear-gradient(var(--c),transparent 85%);
+  animation:sweep var(--t) ease-in-out var(--d) infinite alternate}
+@keyframes sweep{from{transform:rotate(var(--a))}to{transform:rotate(calc(var(--a) * -1))}}
+.spot{position:absolute;bottom:18px;left:0;width:70px;height:16px;border-radius:50%;background:var(--c);filter:blur(10px);opacity:.5;mix-blend-mode:screen;
+  animation:slide var(--t) ease-in-out var(--d) infinite alternate}
+@keyframes slide{from{transform:translateX(-20vw)}to{transform:translateX(100vw)}}
+
 /* Seksjonar */
 .section{padding:var(--section) 0}
 .section__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 2rem;margin-bottom:clamp(2rem,5vw,3rem)}
@@ -317,7 +334,12 @@ button.pill{cursor:pointer}
     </div>
   </section>
 
-  <section class="section" id="info" aria-labelledby="info-title">
+  <div class="disco" aria-hidden="true">
+    <span class="disco__string"></span><span class="beam" style="--c:#d9a441;--a:55deg;--t:3.2s;--d:0s"></span><span class="beam" style="--c:#c8402b;--a:-45deg;--t:2.6s;--d:-0.8s"></span><span class="beam" style="--c:#5b8cff;--a:40deg;--t:3.8s;--d:-1.6s"></span><span class="beam" style="--c:#c04bd6;--a:-60deg;--t:3s;--d:-0.4s"></span><span class="beam" style="--c:#f1ebe0;--a:30deg;--t:2.2s;--d:-1.2s"></span><span class="spot" style="--c:#d9a441;--t:4.2s;--d:0s"></span><span class="spot" style="--c:#c8402b;--t:5.4s;--d:-2s"></span><span class="spot" style="--c:#5b8cff;--t:3.6s;--d:-1s"></span><span class="spot" style="--c:#c04bd6;--t:4.8s;--d:-3s"></span><span class="spot" style="--c:#f1ebe0;--t:6s;--d:-1.5s"></span>
+    <span class="disco__ball"></span>
+  </div>
+
+  <section class="section" id="info" style="padding-top:clamp(1.5rem,4vw,2.5rem)" aria-labelledby="info-title">
     <div class="wrap">
       <div class="section__head reveal">
         <div>
