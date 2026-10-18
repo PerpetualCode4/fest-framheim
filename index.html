@@ -148,6 +148,14 @@ a{color:inherit}
 .signup h2{font-weight:600;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.045em;max-width:12ch}
 .signup p{max-width:42ch;margin-top:1.25rem;opacity:.85}
 .signup .pill{margin-top:2rem}
+.glass{display:block;width:56px;height:84px;margin-bottom:1.5rem;overflow:visible}
+.glass__liquid{transform-box:fill-box;transform:translateY(105%);transition:transform 2.6s var(--ease) .3s}
+.signup.in .glass__liquid{transform:none}
+.glass__bub{transform-box:fill-box;opacity:0}
+.signup.in .glass__bub{animation:bub 2.8s ease-in infinite}
+.glass__bub:nth-child(2){animation-delay:.9s!important}.glass__bub:nth-child(3){animation-delay:1.7s!important}.glass__bub:nth-child(4){animation-delay:2.3s!important}
+@keyframes bub{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-62px);opacity:0}}
+@media (min-width:768px){.glass{position:absolute;right:clamp(2rem,8vw,6rem);top:50%;width:120px;height:180px;margin:-90px 0 0}}
 .signup__alt{font-size:.875rem;color:var(--muted);opacity:1!important}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
@@ -268,6 +276,24 @@ a{color:inherit}
   <section class="section" id="pamelding" style="padding-top:0" aria-labelledby="signup-title">
     <div class="wrap">
       <div class="signup reveal">
+        <svg class="glass" viewBox="0 0 80 120" aria-hidden="true">
+          <defs>
+            <clipPath id="glass-clip"><path d="M13 8h54l-6 104H19z"/></clipPath>
+            <linearGradient id="glass-beer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9b955"/><stop offset="1" stop-color="#b9802a"/></linearGradient>
+          </defs>
+          <g clip-path="url(#glass-clip)">
+            <g class="glass__liquid">
+              <rect x="0" y="26" width="80" height="90" fill="url(#glass-beer)"/>
+              <rect x="0" y="14" width="80" height="14" rx="7" fill="#f1ebe0"/>
+              <circle cx="22" cy="15" r="6" fill="#f1ebe0"/><circle cx="40" cy="13" r="7" fill="#f1ebe0"/><circle cx="58" cy="15" r="6" fill="#f1ebe0"/>
+            </g>
+            <g fill="rgba(255,240,200,.85)">
+              <circle class="glass__bub" cx="30" cy="104" r="1.6"/><circle class="glass__bub" cx="44" cy="106" r="1.2"/>
+              <circle class="glass__bub" cx="52" cy="102" r="1.8"/><circle class="glass__bub" cx="37" cy="108" r="1.1"/>
+            </g>
+          </g>
+          <path d="M13 8h54l-6 104H19z" fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
         <p class="eyebrow">Påmelding</p>
         <h2 id="signup-title">Sjåast i Framheim?</h2>
         <p>Meld deg på før du kjem, så veit me kor mange me blir.</p>
