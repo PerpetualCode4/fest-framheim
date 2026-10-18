@@ -104,7 +104,7 @@ a{color:inherit}
 .fizz{width:100%;height:100%}
 
 /* Pikselperson som røykjer i toppen */
-.smoker{position:absolute;z-index:1;top:5.5rem;right:var(--gutter);width:48px;height:72px;pointer-events:none}
+.smoker{position:absolute;z-index:0;left:0;top:0;width:48px;height:72px;pointer-events:none;visibility:hidden;transform-origin:50% 100%;transform:rotate(-5deg)}
 .smoker svg{display:block;width:100%;height:100%;shape-rendering:crispEdges;image-rendering:pixelated}
 .smoker__up{opacity:0}
 .smoker__down{animation:arm-down 4s steps(1) infinite}
@@ -119,7 +119,6 @@ a{color:inherit}
 .puff--wisp+.puff--wisp{animation-delay:-1.3s}
 @keyframes puff{0%{opacity:0;transform:translate(0,0) scale(.4)}12%{opacity:.85}100%{opacity:0;transform:translate(18px,-80px) scale(2.6)}}
 @keyframes wisp{0%{opacity:0;transform:translate(0,0) scale(.6)}20%{opacity:.7}100%{opacity:0;transform:translate(-6px,-60px) scale(2)}}
-@media (min-width:768px){.smoker{top:7rem;width:64px;height:96px}}
 
 /* Nedteljing */
 .count__lead{display:flex;align-items:center;gap:.9rem}
@@ -548,6 +547,23 @@ document.querySelectorAll('.js-signup').forEach(function (btn) {
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+})();
+
+/* Plasser røykaren lent mot døra oppe til høgre i biletet, same kor biletet blir beskore */
+(function () {
+  var hero = document.querySelector('.hero'), bg = document.querySelector('.hero__bg'), sm = document.querySelector('.smoker');
+  var IMG_W = 1500, IMG_H = 2000, DOOR_X = .885, DOOR_FOOT = .605, DOOR_H = .1;
+  function place() {
+    var hr = hero.getBoundingClientRect(), r = bg.getBoundingClientRect();
+    var k = Math.max(r.width / IMG_W, r.height / IMG_H), iw = IMG_W * k, ih = IMG_H * k;
+    var x = r.left - hr.left + (r.width - iw) * .5 + DOOR_X * iw;
+    var y = r.top - hr.top + (r.height - ih) * .45 + DOOR_FOOT * ih;
+    var h = Math.max(36, DOOR_H * ih * .95), w = h * 16 / 24;
+    sm.style.width = w + 'px'; sm.style.height = h + 'px';
+    sm.style.left = (x - w * .3) + 'px'; sm.style.top = (y - h) + 'px';
+    sm.style.visibility = y > 0 && y < hr.height ? 'visible' : 'hidden';
+  }
+  place(); addEventListener('resize', place);
 })();
 
 /* Gullbobler som stig opp i toppen */
