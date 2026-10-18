@@ -117,16 +117,6 @@ a{color:inherit}
 @keyframes drift{from{transform:translateX(-10%)}to{transform:translateX(10%)}}
 .fizz{width:100%;height:100%}
 
-/* Neonskilt med pil mot døra */
-.neon{position:absolute;z-index:0;left:0;top:0;width:64px;pointer-events:none;visibility:hidden}
-.neon svg{display:block;width:100%;height:auto;overflow:visible}
-.neon__arrow{fill:none;stroke:#ffd27a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:.1 7;
-  filter:drop-shadow(0 0 1.5px #ffd27a) drop-shadow(0 0 6px #e9a83a) drop-shadow(0 0 14px #d9a441);animation:chase .9s linear infinite}
-@keyframes chase{to{stroke-dashoffset:-7.1}}
-.neon__txt{fill:none;stroke:#ff6fae;stroke-width:2.4;font:700 34px "Instrument Sans",sans-serif;letter-spacing:3px;
-  filter:drop-shadow(0 0 1.5px #ff6fae) drop-shadow(0 0 6px #ff3d8b) drop-shadow(0 0 16px #ff3d8b);animation:flicker 9s .8s infinite}
-@keyframes flicker{0%,17%,19.5%,23%,61%,63.5%,100%{opacity:1}18%,22%,62%{opacity:.2}}
-
 /* Discolys i vindauga på Framheim */
 .win{position:absolute;z-index:0;pointer-events:none;mix-blend-mode:screen;color:#d9a441;background:currentColor;opacity:.6;
   box-shadow:0 0 18px 6px currentColor,0 0 60px 20px currentColor;filter:blur(1px);animation:flash 2.4s steps(1) infinite}
@@ -314,12 +304,6 @@ button.pill{cursor:pointer}
     <canvas class="fizz" id="fizz" aria-hidden="true"></canvas>
     <span class="win" aria-hidden="true"></span><span class="win" aria-hidden="true"></span><span class="win" aria-hidden="true"></span>
     <span class="sweep" aria-hidden="true"></span><span class="sweep" aria-hidden="true"></span>
-    <div class="neon" aria-hidden="true">
-      <svg viewBox="0 0 140 84">
-        <text class="neon__txt" x="4" y="34">FEST</text>
-        <path class="neon__arrow" d="M6 50H118a10 10 0 0 1 10 10v16M119 68l9 9 9-9"/>
-      </svg>
-    </div>
     <div class="wrap hero__inner">
       <div class="hero__head">
         <h1 id="hero-title" class="reveal-up d2">
@@ -669,21 +653,16 @@ document.querySelectorAll('.tile').forEach(function (t) {
   requestAnimationFrame(frame);
 })();
 
-/* Plasser neonskiltet og vindauga etter biletet, same kor det blir beskore */
+/* Plasser discolyset i vindauga etter biletet, same kor det blir beskore */
 (function () {
-  var hero = document.querySelector('.hero'), bg = document.querySelector('.hero__bg'), neon = document.querySelector('.neon');
-  var IMG_W = 1500, IMG_H = 2000, NEON = [.70, .375, .82];
+  var hero = document.querySelector('.hero'), bg = document.querySelector('.hero__bg');
+  var IMG_W = 1500, IMG_H = 2000;
   /* Vindauga i biletet som brøkdel av breidd og høgd: venstre, topp, høgre, botn */
   var WINS = [[.475, .445, .535, .515], [.625, .462, .678, .53], [.872, .51, .9, .57]];
   var wins = document.querySelectorAll('.win');
   function place() {
     var hr = hero.getBoundingClientRect(), r = bg.getBoundingClientRect();
     var k = Math.max(r.width / IMG_W, r.height / IMG_H), iw = IMG_W * k, ih = IMG_H * k;
-    var nx = r.left - hr.left + (r.width - iw) * .5 + NEON[0] * iw;
-    var ny = r.top - hr.top + (r.height - ih) * .45 + NEON[1] * ih;
-    neon.style.width = Math.max(84, (NEON[2] - NEON[0]) * iw) + 'px';
-    neon.style.left = nx + 'px'; neon.style.top = ny + 'px';
-    neon.style.visibility = ny > 0 && ny < hr.height ? 'visible' : 'hidden';
     var ox = r.left - hr.left + (r.width - iw) * .5, oy = r.top - hr.top + (r.height - ih) * .45;
     wins.forEach(function (el, i) {
       var b = WINS[i];
