@@ -206,14 +206,7 @@ a.tile__v{text-decoration:none;color:var(--gold)}
 .signup__ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
 button.pill{cursor:pointer}
 .glasses{position:relative;z-index:1;display:flex;align-items:flex-end;gap:.6rem;margin-bottom:1.5rem}
-.signup>:not(.balloons):not(.glasses){position:relative;z-index:1}
-.balloons{position:absolute;inset:0;z-index:0;pointer-events:none}
-.balloon{position:absolute;inset:0;transform:translateY(100%)}
-.balloon svg{position:absolute;top:0;width:44px;height:120px;opacity:.6;transform-origin:50% 20%}
-.signup.in .balloon{animation:float-up var(--t,16s) linear var(--d,0s) infinite}
-.signup.in .balloon svg{animation:sway 3.2s ease-in-out infinite alternate}
-@keyframes float-up{from{transform:translateY(100%)}to{transform:translateY(-30%)}}
-@keyframes sway{from{transform:rotate(-6deg) translateX(-4px)}to{transform:rotate(6deg) translateX(4px)}}
+.signup>:not(.glasses){position:relative;z-index:1}
 .glass{display:block;width:56px;height:84px;overflow:visible}
 .glass--bottle{width:35px}
 .glass--smoke{width:49px}
@@ -402,24 +395,7 @@ button.pill{cursor:pointer}
   <section class="section" id="pamelding" style="padding-top:0" aria-labelledby="signup-title">
     <div class="wrap">
       <div class="signup reveal">
-                <div class="balloons" aria-hidden="true">
-          <div class="balloon" style="--t:15s;--d:0s"><svg viewBox="0 0 44 120" style="left:6%;color:#d9a441">
-            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
-            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
-          <div class="balloon" style="--t:18s;--d:2.5s"><svg viewBox="0 0 44 120" style="left:30%;color:#c8402b">
-            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
-            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
-          <div class="balloon" style="--t:16s;--d:5s"><svg viewBox="0 0 44 120" style="left:55%;color:#f1ebe0">
-            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
-            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
-          <div class="balloon" style="--t:19s;--d:1.2s"><svg viewBox="0 0 44 120" style="left:76%;color:#d9a441">
-            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
-            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
-          <div class="balloon" style="--t:14s;--d:7s"><svg viewBox="0 0 44 120" style="left:90%;color:#c8402b">
-            <ellipse cx="22" cy="25" rx="18" ry="22" fill="currentColor"/><ellipse cx="15" cy="16" rx="4" ry="6" fill="#fff" opacity=".3"/>
-            <path d="M19 47h6l-3 4z" fill="currentColor"/><path d="M22 51c-4 12 4 22 0 34s4 18 0 30" fill="none" stroke="rgba(241,235,224,.4)" stroke-width="1"/></svg></div>
-        </div>
-        <div class="glasses" aria-hidden="true">
+                <div class="glasses" aria-hidden="true">
         <svg class="glass" viewBox="0 0 80 120">
           <defs>
             <clipPath id="glass-clip"><path d="M13 8h54l-6 104H19z"/></clipPath>
