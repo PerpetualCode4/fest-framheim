@@ -148,14 +148,18 @@ a{color:inherit}
 .signup h2{font-weight:600;font-size:clamp(2.75rem,8vw,5.5rem);line-height:1;letter-spacing:-.045em;max-width:12ch}
 .signup p{max-width:42ch;margin-top:1.25rem;opacity:.85}
 .signup .pill{margin-top:2rem}
-.glass{display:block;width:56px;height:84px;margin-bottom:1.5rem;overflow:visible}
+.glasses{display:flex;align-items:flex-end;gap:.6rem;margin-bottom:1.5rem}
+.glass{display:block;width:56px;height:84px;overflow:visible}
+.glass--flute{width:35px}
 .glass__liquid{transform-box:fill-box;transform:translateY(105%);transition:transform 2.6s var(--ease) .3s}
 .signup.in .glass__liquid{transform:none}
 .glass__bub{transform-box:fill-box;opacity:0}
 .signup.in .glass__bub{animation:bub 2.8s ease-in infinite}
 .glass__bub:nth-child(2){animation-delay:.9s!important}.glass__bub:nth-child(3){animation-delay:1.7s!important}.glass__bub:nth-child(4){animation-delay:2.3s!important}
+.glass--flute .glass__bub{animation-name:bub2!important}
+@keyframes bub2{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-44px);opacity:0}}
 @keyframes bub{0%{transform:translateY(0);opacity:0}25%{opacity:.9}100%{transform:translateY(-62px);opacity:0}}
-@media (min-width:768px){.glass{position:absolute;right:clamp(2rem,8vw,6rem);top:50%;width:120px;height:180px;margin:-90px 0 0}}
+@media (min-width:1100px){.glasses{position:absolute;right:clamp(2rem,8vw,6rem);top:50%;margin:-90px 0 0;gap:1.25rem}.glass{width:120px;height:180px}.glass--flute{width:75px}}
 .signup__alt{font-size:.875rem;color:var(--muted);opacity:1!important}
 .signup__alt a{color:var(--text);text-underline-offset:3px}
 
@@ -276,7 +280,8 @@ a{color:inherit}
   <section class="section" id="pamelding" style="padding-top:0" aria-labelledby="signup-title">
     <div class="wrap">
       <div class="signup reveal">
-        <svg class="glass" viewBox="0 0 80 120" aria-hidden="true">
+        <div class="glasses" aria-hidden="true">
+        <svg class="glass" viewBox="0 0 80 120">
           <defs>
             <clipPath id="glass-clip"><path d="M13 8h54l-6 104H19z"/></clipPath>
             <linearGradient id="glass-beer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9b955"/><stop offset="1" stop-color="#b9802a"/></linearGradient>
@@ -294,6 +299,23 @@ a{color:inherit}
           </g>
           <path d="M13 8h54l-6 104H19z" fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linejoin="round"/>
         </svg>
+        <svg class="glass glass--flute" viewBox="0 0 50 120" aria-hidden="true">
+          <defs>
+            <clipPath id="flute-clip"><path d="M14 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/></clipPath>
+            <linearGradient id="flute-wine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e3a8"/><stop offset="1" stop-color="#d6ae55"/></linearGradient>
+          </defs>
+          <g clip-path="url(#flute-clip)">
+            <g class="glass__liquid"><rect x="0" y="14" width="50" height="56" fill="url(#flute-wine)"/></g>
+            <g fill="rgba(255,250,225,.95)">
+              <circle class="glass__bub" cx="25" cy="58" r="1"/><circle class="glass__bub" cx="22" cy="56" r=".8"/>
+              <circle class="glass__bub" cx="28" cy="57" r=".9"/><circle class="glass__bub" cx="25" cy="60" r=".7"/>
+            </g>
+          </g>
+          <g fill="none" stroke="rgba(241,235,224,.65)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 6h22l-1.5 46c-.5 8-4.5 12-9.5 12s-9-4-9.5-12z"/><path d="M25 64v44M14 110h22"/>
+          </g>
+        </svg>
+        </div>
         <p class="eyebrow">Påmelding</p>
         <h2 id="signup-title">Sjåast i Framheim?</h2>
         <p>Meld deg på før du kjem, så veit me kor mange me blir.</p>
