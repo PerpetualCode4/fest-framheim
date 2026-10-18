@@ -117,12 +117,13 @@ a{color:inherit}
 @keyframes drift{from{transform:translateX(-10%)}to{transform:translateX(10%)}}
 .fizz{width:100%;height:100%}
 
-/* Neonskilt på veggen ved døra */
+/* Neonskilt med pil mot døra */
 .neon{position:absolute;z-index:0;left:0;top:0;width:64px;pointer-events:none;visibility:hidden}
 .neon svg{display:block;width:100%;height:auto;overflow:visible}
-.neon__mug{fill:none;stroke:#ffd27a;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
-  filter:drop-shadow(0 0 1.5px #ffd27a) drop-shadow(0 0 6px #e9a83a) drop-shadow(0 0 16px #d9a441);animation:flicker 7s infinite}
-.neon__txt{fill:none;stroke:#ff6fae;stroke-width:2.4;font:700 40px "Instrument Sans",sans-serif;letter-spacing:2px;
+.neon__arrow{fill:none;stroke:#ffd27a;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:.1 7;
+  filter:drop-shadow(0 0 1.5px #ffd27a) drop-shadow(0 0 6px #e9a83a) drop-shadow(0 0 14px #d9a441);animation:chase .9s linear infinite}
+@keyframes chase{to{stroke-dashoffset:-7.1}}
+.neon__txt{fill:none;stroke:#ff6fae;stroke-width:2.4;font:700 34px "Instrument Sans",sans-serif;letter-spacing:3px;
   filter:drop-shadow(0 0 1.5px #ff6fae) drop-shadow(0 0 6px #ff3d8b) drop-shadow(0 0 16px #ff3d8b);animation:flicker 9s .8s infinite}
 @keyframes flicker{0%,17%,19.5%,23%,61%,63.5%,100%{opacity:1}18%,22%,62%{opacity:.2}}
 
@@ -314,14 +315,9 @@ button.pill{cursor:pointer}
     <span class="win" aria-hidden="true"></span><span class="win" aria-hidden="true"></span><span class="win" aria-hidden="true"></span>
     <span class="sweep" aria-hidden="true"></span><span class="sweep" aria-hidden="true"></span>
     <div class="neon" aria-hidden="true">
-      <svg viewBox="0 0 120 64">
-        <g class="neon__mug">
-          <path d="M8 18h32v38a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z"/>
-          <path d="M40 26h6a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6h-6"/>
-          <path d="M6 18c0-6 5-9 9-7 2-5 9-6 12-2 4-3 10-1 11 4 3 0 5 3 4 5"/>
-          <path d="M18 30v20M30 30v20"/>
-        </g>
-        <text class="neon__txt" x="62" y="52">ØL</text>
+      <svg viewBox="0 0 140 84">
+        <text class="neon__txt" x="4" y="34">FEST</text>
+        <path class="neon__arrow" d="M6 50H118a10 10 0 0 1 10 10v16M119 68l9 9 9-9"/>
       </svg>
     </div>
     <div class="wrap hero__inner">
@@ -676,7 +672,7 @@ document.querySelectorAll('.tile').forEach(function (t) {
 /* Plasser neonskiltet og vindauga etter biletet, same kor det blir beskore */
 (function () {
   var hero = document.querySelector('.hero'), bg = document.querySelector('.hero__bg'), neon = document.querySelector('.neon');
-  var IMG_W = 1500, IMG_H = 2000, NEON = [.70, .375, .79];
+  var IMG_W = 1500, IMG_H = 2000, NEON = [.70, .375, .82];
   /* Vindauga i biletet som brøkdel av breidd og høgd: venstre, topp, høgre, botn */
   var WINS = [[.475, .445, .535, .515], [.625, .462, .678, .53], [.872, .51, .9, .57]];
   var wins = document.querySelectorAll('.win');
@@ -685,7 +681,7 @@ document.querySelectorAll('.tile').forEach(function (t) {
     var k = Math.max(r.width / IMG_W, r.height / IMG_H), iw = IMG_W * k, ih = IMG_H * k;
     var nx = r.left - hr.left + (r.width - iw) * .5 + NEON[0] * iw;
     var ny = r.top - hr.top + (r.height - ih) * .45 + NEON[1] * ih;
-    neon.style.width = Math.max(64, (NEON[2] - NEON[0]) * iw) + 'px';
+    neon.style.width = Math.max(84, (NEON[2] - NEON[0]) * iw) + 'px';
     neon.style.left = nx + 'px'; neon.style.top = ny + 'px';
     neon.style.visibility = ny > 0 && ny < hr.height ? 'visible' : 'hidden';
     var ox = r.left - hr.left + (r.width - iw) * .5, oy = r.top - hr.top + (r.height - ih) * .45;
