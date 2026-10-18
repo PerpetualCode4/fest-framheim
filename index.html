@@ -168,24 +168,6 @@ a{color:inherit}
 .clock__unit{font-size:.8125rem;color:var(--muted)}
 .count__msg{font-weight:600;font-size:clamp(1.75rem,6vw,2.75rem);letter-spacing:-.03em;color:var(--gold)}
 
-/* Pikselfigur som skålar og kastar glaset i lufta */
-.toast{position:relative;height:200px}
-.toaster{position:absolute;left:50%;bottom:16px;width:80px;height:160px;margin-left:-40px}
-.toaster svg{position:absolute;shape-rendering:crispEdges}
-.toaster__body{left:0;top:64px;width:64px;height:96px}
-.toaster__shadow{position:absolute;left:4px;bottom:-4px;width:56px;height:8px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.7),transparent)}
-.toaster__glass{left:52px;top:108px;width:16px;height:20px;transform-box:fill-box;transform-origin:50% 50%;animation:toss 3.6s ease-in-out infinite}
-.toaster__down{animation:arm-down2 3.6s steps(1) infinite}
-.toaster__up{opacity:0;animation:arm-up2 3.6s steps(1) infinite}
-.toaster__say{position:absolute;left:72px;top:36px;padding:.3rem .6rem;border-radius:10px 10px 10px 2px;background:var(--text);color:var(--night);
-  font-weight:700;font-size:.875rem;white-space:nowrap;opacity:0;animation:say 3.6s steps(1) infinite}
-@keyframes arm-down2{0%{opacity:1}30%{opacity:0}88%{opacity:1}}
-@keyframes arm-up2{0%{opacity:0}30%{opacity:1}88%{opacity:0}}
-@keyframes say{0%{opacity:0}32%{opacity:1}72%{opacity:0}}
-@keyframes toss{0%,28%{transform:translate(0,0) rotate(0)}36%{transform:translate(0,-48px) rotate(0)}
-  50%{transform:translate(6px,-110px) rotate(270deg)}58%{transform:translate(6px,-124px) rotate(400deg)}
-  72%{transform:translate(2px,-60px) rotate(690deg)}78%,86%{transform:translate(0,-48px) rotate(720deg)}96%,100%{transform:translate(0,0) rotate(720deg)}}
-
 /* Seksjonar */
 .section{padding:var(--section) 0}
 .section__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 2rem;margin-bottom:clamp(2rem,5vw,3rem)}
@@ -370,15 +352,6 @@ button.pill{cursor:pointer}
       <p class="count__msg" id="clock-msg" hidden></p>
     </div>
   </section>
-
-  <div class="toast" aria-hidden="true">
-    <div class="toaster">
-      <span class="toaster__say">Skål!</span>
-      <span class="toaster__shadow"></span>
-      <svg class="toaster__body" viewBox="0 0 16 24"><rect x="5" y="0" width="6" height="2" fill="#c99a4a"/><rect x="4" y="1" width="1" height="3" fill="#c99a4a"/><rect x="5" y="2" width="6" height="5" fill="#e0b08a"/><rect x="9" y="4" width="1" height="1" fill="#1a1410"/><rect x="8" y="6" width="2" height="1" fill="#8a4a3a"/><rect x="4" y="7" width="8" height="9" fill="#8f2d22"/><rect x="4" y="7" width="8" height="1" fill="#a83a2c"/><rect x="5" y="16" width="3" height="6" fill="#1c2231"/><rect x="8" y="16" width="3" height="6" fill="#1c2231"/><rect x="4" y="22" width="4" height="2" fill="#0b0d12"/><rect x="8" y="22" width="4" height="2" fill="#0b0d12"/><g class="toaster__down"><rect x="12" y="8" width="2" height="6" fill="#8f2d22"/><rect x="12" y="14" width="2" height="1" fill="#e0b08a"/></g><g class="toaster__up"><rect x="12" y="7" width="2" height="2" fill="#8f2d22"/><rect x="12" y="3" width="2" height="4" fill="#8f2d22"/><rect x="12" y="2" width="2" height="1" fill="#e0b08a"/></g></svg>
-      <svg class="toaster__glass" viewBox="0 0 4 5"><rect x="0" y="0" width="4" height="1" fill="#f1ebe0"/><rect x="0" y="1" width="4" height="4" fill="#e9b955"/><rect x="0" y="1" width="1" height="4" fill="#f3cf7a"/></svg>
-    </div>
-  </div>
 
   <section class="section" id="info" style="padding-top:clamp(1.5rem,4vw,2.5rem)" aria-labelledby="info-title">
     <div class="wrap">
